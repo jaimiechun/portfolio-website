@@ -57,6 +57,15 @@ body {
   color: white;
 }
 
+/* Custom cursor replaces the native one on mouse devices */
+@media (hover: hover) and (pointer: fine) {
+  body,
+  a,
+  button {
+    cursor: none;
+  }
+}
+
 /* Hide native media UI on decorative thumbnail videos */
 video::-webkit-media-controls,
 video::-webkit-media-controls-panel,

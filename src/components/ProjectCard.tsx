@@ -10,11 +10,17 @@ interface ProjectCardProps {
   color?: string;
   imageAspect?: string;
   video?: string;
+  cursorLabel?: string;
 }
 
-export default function ProjectCard({ slug, title, category, date, imageAspect = "4/3", video }: ProjectCardProps) {
+export default function ProjectCard({ slug, title, category, date, imageAspect = "4/3", video, cursorLabel }: ProjectCardProps) {
   return (
-    <Link href={`/work/${slug}`} style={{ textDecoration: "none", color: "inherit" }}>
+    <Link
+      href={`/work/${slug}`}
+      data-cursor="view"
+      data-cursor-label={cursorLabel}
+      style={{ textDecoration: "none", color: "inherit" }}
+    >
       <article>
         {/* Thumbnail */}
         <div

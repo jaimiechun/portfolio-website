@@ -26,6 +26,7 @@ const projects = [
     category: "PERSONAL PROJECT",
     date: "MARCH–MAY 2026",
     video: "/videos/journalism-web-story.mp4",
+    cursorLabel: "READ FULL STORY",
   },
 ];
 
