@@ -13,6 +13,7 @@ const projects = [
     title: "Perspective: Synthetic Audience Auditing",
     category: "KNIGHT LAB PROJECT",
     date: "FEB–JUNE 2026",
+    embed: "/embeds/perspectives.html",
   },
   {
     slug: "cache-app",

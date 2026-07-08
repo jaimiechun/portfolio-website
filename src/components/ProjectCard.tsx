@@ -10,10 +10,11 @@ interface ProjectCardProps {
   color?: string;
   imageAspect?: string;
   video?: string;
+  embed?: string;
   cursorLabel?: string;
 }
 
-export default function ProjectCard({ slug, title, category, date, imageAspect = "4/3", video, cursorLabel }: ProjectCardProps) {
+export default function ProjectCard({ slug, title, category, date, imageAspect = "4/3", video, embed, cursorLabel }: ProjectCardProps) {
   return (
     <Link
       href={`/work/${slug}`}
@@ -42,6 +43,26 @@ export default function ProjectCard({ slug, title, category, date, imageAspect =
             (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.45)";
           }}
         >
+          {embed && (
+            <iframe
+              src={embed}
+              tabIndex={-1}
+              aria-hidden
+              scrolling="no"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "200%",
+                height: "200%",
+                transform: "scale(0.5)",
+                transformOrigin: "top left",
+                border: "none",
+                pointerEvents: "none",
+                display: "block",
+              }}
+            />
+          )}
           {video && (
             <video
               src={video}

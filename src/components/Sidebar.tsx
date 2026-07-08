@@ -2,7 +2,7 @@ const connectLinks = [
   { label: "EMAIL", href: "mailto:jaimiechun2028@u.northwestern.edu" },
   { label: "LINKEDIN", href: "https://www.linkedin.com/in/jaimiekchun", external: true },
   { label: "GITHUB", href: "https://github.com/jaimiechun", external: true },
-  { label: "RESUME", href: "/resume" },
+  { label: "RESUME", href: "/resume.pdf", external: true },
 ];
 
 const mono: React.CSSProperties = {

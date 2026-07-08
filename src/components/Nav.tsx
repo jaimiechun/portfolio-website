@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 const links = [
   { href: "/", label: "PROJECTS" },
   { href: "/about", label: "ABOUT" },
-  { href: "/resume", label: "RESUME" },
+  { href: "/resume.pdf", label: "RESUME", external: true },
 ];
 
 export default function Nav() {
@@ -58,11 +58,13 @@ export default function Nav() {
       <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
         {links.map((link) => {
           const isActive =
-            link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+            link.href === "/" ? pathname === "/" : !link.external && pathname.startsWith(link.href);
           return (
             <Link
               key={link.href}
               href={link.href}
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noopener noreferrer" : undefined}
               style={{
                 fontFamily: "var(--font-mono)",
                 fontSize: "14px",
