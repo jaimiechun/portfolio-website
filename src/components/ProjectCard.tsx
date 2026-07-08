@@ -12,12 +12,15 @@ interface ProjectCardProps {
   video?: string;
   embed?: string;
   cursorLabel?: string;
+  externalUrl?: string;
 }
 
-export default function ProjectCard({ slug, title, category, date, imageAspect = "4/3", video, embed, cursorLabel }: ProjectCardProps) {
+export default function ProjectCard({ slug, title, category, date, imageAspect = "4/3", video, embed, cursorLabel, externalUrl }: ProjectCardProps) {
   return (
     <Link
-      href={`/work/${slug}`}
+      href={externalUrl ?? `/work/${slug}`}
+      target={externalUrl ? "_blank" : undefined}
+      rel={externalUrl ? "noopener noreferrer" : undefined}
       data-cursor="view"
       data-cursor-label={cursorLabel}
       style={{ textDecoration: "none", color: "inherit" }}

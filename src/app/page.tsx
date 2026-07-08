@@ -28,6 +28,7 @@ const projects = [
     date: "MARCH–MAY 2026",
     video: "/videos/journalism-web-story.mp4",
     cursorLabel: "READ FULL STORY",
+    externalUrl: "https://jaimiechun.github.io/morning-jay-s-story/",
   },
 ];
 
@@ -38,7 +39,7 @@ export default function Home() {
       <div
         style={{
           display: "flex",
-          minHeight: "calc(100vh - 57px)",
+          minHeight: "calc(100vh - 51px)",
         }}
       >
         <Sidebar />

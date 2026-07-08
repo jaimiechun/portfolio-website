@@ -25,7 +25,7 @@ const orgs = [
 
 export default function About() {
   return (
-    <div style={{ display: "flex", minHeight: "calc(100vh - 57px)" }}>
+    <div style={{ display: "flex", minHeight: "calc(100vh - 51px)" }}>
       <Sidebar />
 
       {/* Main content */}
