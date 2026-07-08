@@ -7,6 +7,8 @@ const projects = [
     title: "Data Visualization for Flagship Report on Global Water Security",
     category: "INTERNSHIP",
     date: "JUNE 2026–PRESENT",
+    images: ["/images/wise-gender-map.jpg", "/images/wise-collection-map.jpg"],
+    cursorLabel: "IN PROGRESS",
   },
   {
     slug: "synthetic-audience-auditing",
@@ -14,6 +16,7 @@ const projects = [
     category: "KNIGHT LAB PROJECT",
     date: "FEB–JUNE 2026",
     embed: "/embeds/perspectives.html",
+    cursorLabel: "VIEW PROJECT",
   },
   {
     slug: "cache-app",
@@ -39,13 +42,13 @@ export default function Home() {
       <div
         style={{
           display: "flex",
-          minHeight: "calc(100vh - 51px)",
+          minHeight: "calc(100vh - 50px)",
         }}
       >
         <Sidebar />
 
         {/* Main content */}
-        <main style={{ flex: 1, padding: "40px 44px 80px" }}>
+        <main style={{ flex: 1, padding: "16px 44px 80px" }}>
           <div style={{ display: "flex", gap: "32px", alignItems: "flex-start" }}>
             {/* Left column — starts at top, shorter images */}
             <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "8px" }}>

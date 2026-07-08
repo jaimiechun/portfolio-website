@@ -11,11 +11,12 @@ interface ProjectCardProps {
   imageAspect?: string;
   video?: string;
   embed?: string;
+  images?: string[];
   cursorLabel?: string;
   externalUrl?: string;
 }
 
-export default function ProjectCard({ slug, title, category, date, imageAspect = "4/3", video, embed, cursorLabel, externalUrl }: ProjectCardProps) {
+export default function ProjectCard({ slug, title, category, date, imageAspect = "4/3", video, embed, images, cursorLabel, externalUrl }: ProjectCardProps) {
   return (
     <Link
       href={externalUrl ?? `/work/${slug}`}
@@ -46,6 +47,31 @@ export default function ProjectCard({ slug, title, category, date, imageAspect =
             (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.45)";
           }}
         >
+          {images && (
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {images.map((src) => (
+                <img
+                  key={src}
+                  src={src}
+                  alt=""
+                  style={{
+                    width: "100%",
+                    flex: 1,
+                    minHeight: 0,
+                    objectFit: "cover",
+                    display: "block",
+                  }}
+                />
+              ))}
+            </div>
+          )}
           {embed && (
             <iframe
               src={embed}

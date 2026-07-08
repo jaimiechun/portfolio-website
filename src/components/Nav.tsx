@@ -7,7 +7,6 @@ export default function Nav() {
         display: "flex",
         alignItems: "center",
         padding: "20px 40px 16px",
-        borderBottom: "1px solid rgba(0,0,0,0.08)",
         position: "sticky",
         top: 0,
         background: "transparent",
