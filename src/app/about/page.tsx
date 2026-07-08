@@ -21,7 +21,7 @@ export default function About() {
             src="/images/headshot.jpg"
             alt="Jaimie Chun"
             style={{
-              width: "273px",
+              width: "288px",
               height: "273px",
               borderRadius: "50%",
               objectFit: "cover",
