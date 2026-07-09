@@ -25,6 +25,7 @@ export default function About() {
               height: "273px",
               borderRadius: "2px",
               objectFit: "cover",
+              objectPosition: "center 30%",
               flexShrink: 0,
             }}
           />
