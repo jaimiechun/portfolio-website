@@ -23,7 +23,7 @@ export default function About() {
             style={{
               width: "288px",
               height: "273px",
-              borderRadius: "50%",
+              borderRadius: "2px",
               objectFit: "cover",
               flexShrink: 0,
             }}
