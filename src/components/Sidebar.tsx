@@ -3,13 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const navLinks = [
+type SidebarLink = { label: string; href: string; external?: boolean };
+
+const navLinks: SidebarLink[] = [
   { label: "PROJECTS", href: "/" },
   { label: "PLAY", href: "/play" },
   { label: "ABOUT", href: "/about" },
 ];
 
-const connectLinks = [
+const connectLinks: SidebarLink[] = [
   { label: "EMAIL", href: "mailto:jaimiechun2028@u.northwestern.edu" },
   { label: "LINKEDIN", href: "https://www.linkedin.com/in/jaimiekchun", external: true },
   { label: "GITHUB", href: "https://github.com/jaimiechun", external: true },
@@ -32,6 +34,21 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
+    <>
+      {/* Vertical divider spanning the full viewport height */}
+      <div
+        aria-hidden
+        style={{
+          position: "fixed",
+          top: 0,
+          left: "260px",
+          width: "1px",
+          height: "100vh",
+          background: "rgba(0,0,0,0.08)",
+          pointerEvents: "none",
+          zIndex: 60,
+        }}
+      />
     <aside
       style={{
         width: "260px",
@@ -40,7 +57,6 @@ export default function Sidebar() {
         display: "flex",
         flexDirection: "column",
         gap: "28px",
-        borderRight: "1px solid rgba(0,0,0,0.08)",
         position: "sticky",
         top: "50px",
         height: "calc(100vh - 50px)",
@@ -145,5 +161,6 @@ export default function Sidebar() {
         ))}
       </div>
     </aside>
+    </>
   );
 }
