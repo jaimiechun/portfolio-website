@@ -40,7 +40,7 @@ export default function CustomCursor() {
       if (viewEl) {
         setLabel(viewEl.dataset.cursorLabel || "VIEW CASE STUDY");
         setMode("view");
-      } else if (target.closest?.("a, button")) {
+      } else if (target.closest?.('a, button, [data-cursor="link"]')) {
         setMode("link");
       } else {
         setMode("dot");

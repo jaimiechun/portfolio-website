@@ -1,4 +1,5 @@
 import Sidebar from "@/components/Sidebar";
+import Bookshelf from "@/components/Bookshelf";
 
 const geist: React.CSSProperties = {
   fontFamily: "var(--font-geist-sans), 'Geist Fallback', sans-serif",
@@ -14,7 +15,7 @@ export default function About() {
 
       {/* Main content */}
       <div style={{ flex: 1, padding: "48px 32px 100px 44px" }}>
-        <div style={{ display: "flex", gap: "32px", alignItems: "flex-start" }}>
+        <div style={{ display: "flex", gap: "64px", alignItems: "center" }}>
 
           {/* Photo */}
           <img
@@ -30,7 +31,7 @@ export default function About() {
           />
 
           {/* Bio */}
-          <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "10px" }}>
+          <div style={{ maxWidth: "560px", display: "flex", flexDirection: "column", gap: "10px" }}>
             <h1
               style={{
                 fontFamily: "var(--font-geist-sans), 'Geist Fallback', sans-serif",
@@ -71,6 +72,11 @@ export default function About() {
             </p>
           </div>
 
+        </div>
+
+        {/* Bookshelf */}
+        <div style={{ marginTop: "64px" }}>
+          <Bookshelf />
         </div>
       </div>
     </div>
