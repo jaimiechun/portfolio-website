@@ -70,13 +70,14 @@ export default function Sidebar() {
           fontSize: "13px",
           fontWeight: 400,
           lineHeight: 1.75,
+          letterSpacing: "0",
           color: "var(--foreground)",
         }}
       >
         Jaimie Chun is passionate about projects that apply technology to
-        storytelling and creative expression. She thinks deeply about people
-        and products, bringing an interdisciplinary skillset to every project
-        she undertakes.
+        storytelling and problem solving. For Jaimie, product management is
+        the perfect culmination of the communication skills of journalism,
+        the technical skills of CS, and the leadership skills of business.
       </p>
 
       <div style={divider} />
