@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 type SidebarLink = { label: string; href: string; external?: boolean };
 
@@ -32,6 +33,23 @@ const divider: React.CSSProperties = {
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const tick = () =>
+      setTime(
+        new Date().toLocaleTimeString("en-US", {
+          timeZone: "America/Chicago",
+          hour: "numeric",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true,
+        })
+      );
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <>
@@ -53,7 +71,7 @@ export default function Sidebar() {
       style={{
         width: "260px",
         flexShrink: 0,
-        padding: "0 28px 48px 36px",
+        padding: "0 28px 32px 36px",
         display: "flex",
         flexDirection: "column",
         gap: "28px",
@@ -87,7 +105,7 @@ export default function Sidebar() {
         <p
           style={{
             ...mono,
-            fontSize: "11px",
+            fontSize: "14px",
             fontWeight: 400,
             color: "var(--muted)",
             letterSpacing: "0.1em",
@@ -130,7 +148,7 @@ export default function Sidebar() {
         <p
           style={{
             ...mono,
-            fontSize: "11px",
+            fontSize: "14px",
             fontWeight: 400,
             color: "var(--muted)",
             letterSpacing: "0.1em",
@@ -160,6 +178,29 @@ export default function Sidebar() {
             <span style={{ marginLeft: "auto", fontSize: "12px", color: "var(--muted)" }}>↗</span>
           </a>
         ))}
+      </div>
+
+      {/* Footer */}
+      <div
+        style={{
+          marginTop: "auto",
+          display: "flex",
+          flexDirection: "column",
+          rowGap: "8px",
+          fontFamily: "var(--font-geist-sans), 'Geist Fallback', sans-serif",
+          fontSize: "10px",
+          fontWeight: 400,
+          letterSpacing: "0",
+          color: "var(--foreground)",
+        }}
+      >
+        <p style={{ display: "flex", alignItems: "baseline", gap: "6px", whiteSpace: "nowrap" }}>
+          glad we could cross paths <span style={{ color: "var(--muted)" }}>✳</span>{" "}
+          <span style={{ ...mono, fontSize: "10px" }}>{time}</span>
+        </p>
+        <p style={{ display: "flex", alignItems: "baseline", gap: "6px", whiteSpace: "nowrap" }}>
+          2026 <span style={{ color: "var(--muted)" }}>✳</span> designed &amp; coded w/ ♡
+        </p>
       </div>
     </aside>
     </>
