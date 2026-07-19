@@ -8,6 +8,10 @@ import CustomCursor from "@/components/CustomCursor";
 export const metadata: Metadata = {
   title: "Jaimie Chun — Product Designer + Engineer",
   description: "Product designer who engineers. Building thoughtful digital experiences.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function RootLayout({
