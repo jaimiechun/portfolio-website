@@ -6,7 +6,7 @@ import Nav from "@/components/Nav";
 import CustomCursor from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
-  title: "Jaimie Chun — Product Designer + Engineer",
+  title: "Jaimie Chun",
   description: "Product designer who engineers. Building thoughtful digital experiences.",
   robots: {
     index: false,

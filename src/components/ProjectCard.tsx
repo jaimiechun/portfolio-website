@@ -35,16 +35,16 @@ export default function ProjectCard({ slug, title, category, date, imageAspect =
             border: "1px solid #c8c8c8",
             borderRadius: "2px",
             background: "rgba(255,255,255,0.45)",
-            transition: "background 0.2s",
+            transition: "opacity 0.25s ease",
             marginBottom: "12px",
             overflow: "hidden",
             position: "relative",
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.65)";
+            (e.currentTarget as HTMLElement).style.opacity = "0.55";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.45)";
+            (e.currentTarget as HTMLElement).style.opacity = "1";
           }}
         >
           {images && (
