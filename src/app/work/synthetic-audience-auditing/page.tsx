@@ -139,8 +139,64 @@ export default function PerspectiveCaseStudy() {
           </ul>
         </div>
 
-        {/* Product Strategy */}
-        <div style={{ ...section, marginTop: "56px" }}>
+        {/* Testing process gallery — flex ratios match image aspect ratios so all
+            three render at the same height with tops and bottoms aligned */}
+        <div
+          style={{
+            display: "flex",
+            gap: "32px",
+            marginTop: "104px",
+            alignItems: "flex-start",
+          }}
+        >
+          {/* Sticky notes (604x800 → 0.755) */}
+          <div style={{ flex: "0.755 1 0%", display: "flex", flexDirection: "column", gap: "14px" }}>
+            <img
+              src="/images/perspective/sticky-testing.jpg"
+              alt="Sticky notes from temperature and model testing sessions"
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
+            <p style={{ ...body, textAlign: "center" }}>temperature/model testing</p>
+          </div>
+
+          {/* Feedback document (900x809 → 1.112) */}
+          <div style={{ flex: "1.112 1 0%", display: "flex", flexDirection: "column", gap: "14px" }}>
+            <img
+              src="/images/perspective/doc-feedback.png"
+              alt="Annotated feedback document from iterative persona testing"
+              style={{ width: "100%", height: "auto", display: "block", border: "1px solid rgba(0,0,0,0.08)" }}
+            />
+            <p style={{ ...body, textAlign: "center" }}>iterative testing &amp; modifications</p>
+          </div>
+
+          {/* Persona stances (874x532 → 1.643) */}
+          <div style={{ flex: "1.643 1 0%", position: "relative", display: "flex", flexDirection: "column", gap: "14px" }}>
+            <p
+              style={{
+                ...body,
+                ...bold,
+                fontSize: "16px",
+                textAlign: "center",
+                position: "absolute",
+                bottom: "calc(100% + 14px)",
+                left: 0,
+                right: 0,
+              }}
+            >
+              &ldquo;what is the best ice cream flavor?&rdquo;
+            </p>
+            <img
+              src="/images/perspective/mirror-personas.png"
+              alt="Persona stances on the best ice cream flavor, each holding their opinion"
+              style={{ width: "100%", height: "auto", display: "block", border: "1px solid rgba(0,0,0,0.08)" }}
+            />
+            <p style={{ ...body, textAlign: "center" }}>capable of holding opinions</p>
+          </div>
+        </div>
+
+        {/* Product Strategy — text left, Mirror screenshot right */}
+        <div style={{ display: "flex", gap: "56px", marginTop: "56px", alignItems: "flex-start" }}>
+        <div style={{ ...section, flex: "1 1 0%" }}>
           <h2 style={heading}>Product Strategy</h2>
           <p style={body}>
             Early prototypes surfaced several issues common to LLM-generated responses. Personas often converged on
@@ -173,33 +229,17 @@ export default function PerspectiveCaseStudy() {
           <p style={body}>Our ultimate goal became ensuring that our personalities were able to hold an opinion firmly.</p>
         </div>
 
-        {/* Mirror screenshots */}
-        <div style={{ marginTop: "64px", maxWidth: "1112px" }}>
-          <div style={{ display: "flex", alignItems: "flex-end", gap: "40px", flexWrap: "wrap" }}>
-            <img
-              src="/images/perspective/mirror-tool.png"
-              alt="The internal Mirror testing tool interface"
-              style={{ width: "min(654px, 100%)", height: "auto", display: "block", border: "1px solid rgba(0,0,0,0.08)" }}
-            />
-            <p style={{ ...body, maxWidth: "317px" }}>
-              prior to being called Perspective, this project&rsquo;s name was Mirror!
-            </p>
-          </div>
+        {/* Mirror screenshot beside the text */}
+        <div style={{ flex: "1 1 0%", display: "flex", flexDirection: "column", gap: "8px", paddingTop: "38px" }}>
           <img
-            src="/images/perspective/mirror-personas.png"
-            alt="Synthetic persona stances generated during batch testing"
-            style={{
-              width: "min(649px, 100%)",
-              height: "auto",
-              display: "block",
-              border: "1px solid rgba(0,0,0,0.08)",
-              marginTop: "-110px",
-              marginLeft: "auto",
-              marginRight: "10%",
-              position: "relative",
-              zIndex: 1,
-            }}
+            src="/images/perspective/mirror-tool.png"
+            alt="The internal Mirror testing tool interface"
+            style={{ width: "100%", height: "auto", display: "block", border: "1px solid rgba(0,0,0,0.08)" }}
           />
+          <p style={{ ...body, textAlign: "right" }}>
+            prior to being called Perspective, this project&rsquo;s name was Mirror!
+          </p>
+        </div>
         </div>
       </div>
     </div>
