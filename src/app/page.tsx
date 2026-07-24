@@ -42,16 +42,16 @@ export default function Home() {
       <div
         style={{
           display: "flex",
-          minHeight: "calc(100vh - 50px)",
+          minHeight: "100vh",
         }}
       >
         <Sidebar />
 
         {/* Main content */}
-        <main style={{ flex: 1, padding: "16px 44px 80px" }}>
-          <div style={{ display: "flex", gap: "32px", alignItems: "flex-start" }}>
+        <main style={{ flex: 1, padding: "24px 24px 80px" }}>
+          <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
             {/* Left column — starts at top, shorter images */}
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "8px" }}>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "16px" }}>
               <ProjectCard {...projects[0]} imageAspect="17/12" />
               <ProjectCard {...projects[2]} imageAspect="17/12" />
             </div>
@@ -61,7 +61,7 @@ export default function Home() {
                 flex: 1,
                 display: "flex",
                 flexDirection: "column",
-                gap: "8px",
+                gap: "16px",
               }}
             >
               <ProjectCard {...projects[1]} imageAspect="4/3" />

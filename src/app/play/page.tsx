@@ -2,7 +2,7 @@ import Sidebar from "@/components/Sidebar";
 
 export default function Play() {
   return (
-    <div style={{ display: "flex", minHeight: "calc(100vh - 50px)" }}>
+    <div style={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar />
 
       {/* Main content */}

@@ -10,7 +10,7 @@ const geist: React.CSSProperties = {
 
 export default function About() {
   return (
-    <div style={{ display: "flex", minHeight: "calc(100vh - 50px)" }}>
+    <div style={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar />
 
       {/* Main content */}

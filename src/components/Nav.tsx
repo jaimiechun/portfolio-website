@@ -7,10 +7,13 @@ export default function Nav() {
         display: "flex",
         alignItems: "center",
         padding: "20px 40px 16px",
-        position: "sticky",
+        position: "fixed",
         top: 0,
+        left: 0,
+        right: 0,
         background: "transparent",
-        zIndex: 50,
+        zIndex: 70,
+        pointerEvents: "none",
       }}
     >
       {/* Name */}
@@ -25,6 +28,7 @@ export default function Nav() {
           textDecoration: "none",
           lineHeight: 1,
           display: "block",
+          pointerEvents: "auto",
         }}
       >
         JAIMIE CHUN

@@ -30,7 +30,7 @@ const section: React.CSSProperties = {
 
 export default function PerspectiveCaseStudy() {
   return (
-    <div style={{ display: "flex", minHeight: "calc(100vh - 50px)" }}>
+    <div style={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar />
 
       {/* Main content */}

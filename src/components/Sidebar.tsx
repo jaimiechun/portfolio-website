@@ -70,13 +70,13 @@ export default function Sidebar() {
       style={{
         width: "260px",
         flexShrink: 0,
-        padding: "0 28px 32px 36px",
+        padding: "50px 28px 32px 36px",
         display: "flex",
         flexDirection: "column",
         gap: "28px",
         position: "sticky",
-        top: "50px",
-        height: "calc(100vh - 50px)",
+        top: 0,
+        height: "100vh",
         overflowY: "auto",
       }}
     >
