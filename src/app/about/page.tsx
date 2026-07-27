@@ -1,11 +1,21 @@
 import Sidebar from "@/components/Sidebar";
 import Bookshelf from "@/components/Bookshelf";
+import TechStack from "@/components/TechStack";
 
 const geist: React.CSSProperties = {
   fontFamily: "var(--font-geist-sans), 'Geist Fallback', sans-serif",
   fontSize: "12px",
   fontWeight: 400,
   lineHeight: 1.6,
+};
+
+const sectionDivider: React.CSSProperties = {
+  width: "100%",
+  height: "0.5px",
+  background: "var(--foreground)",
+  opacity: 0.6,
+  border: "none",
+  marginTop: "64px",
 };
 
 export default function About() {
@@ -73,6 +83,13 @@ export default function About() {
           </div>
 
         </div>
+
+        {/* What I use — left edge aligned with the bio column, not the photo */}
+        <div style={{ marginTop: "40px", marginLeft: "352px" }}>
+          <TechStack />
+        </div>
+
+        <hr style={sectionDivider} />
 
         {/* Bookshelf */}
         <div style={{ marginTop: "64px" }}>
