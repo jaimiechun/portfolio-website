@@ -62,10 +62,10 @@ export default function About() {
               I&apos;m energized by projects that launch products from 0 →1 and figuring out what people actually want. Outside of work, I&apos;m:
             </p>
 
-            <ul style={{ ...geist, paddingLeft: "20px", display: "flex", flexDirection: "column", gap: "2px" }}>
+            <ul style={{ ...geist, listStyle: "disc", paddingLeft: "20px", display: "flex", flexDirection: "column", gap: "2px" }}>
               <li>developing news &amp; media products for journalism at Medill</li>
               <li>indulging in a good books</li>
-              <li>finding new restaurants, eating well and repeat</li>
+              <li>finding new restaurants, eating well and repeating</li>
             </ul>
             <p style={{ ...geist }}>
               Say hi at jaimiechun2028@u.northwestern.edu, and I hope you enjoy my website!
