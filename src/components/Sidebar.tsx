@@ -104,7 +104,7 @@ export default function Sidebar() {
         <p
           style={{
             ...mono,
-            fontSize: "14px",
+            fontSize: "12px",
             fontWeight: 400,
             color: "var(--muted)",
             letterSpacing: "0.1em",
@@ -124,7 +124,7 @@ export default function Sidebar() {
               rel={link.external ? "noopener noreferrer" : undefined}
               style={{
                 ...mono,
-                fontSize: "14px",
+                fontSize: "12px",
                 fontWeight: 400,
                 color: isActive ? "var(--foreground)" : "var(--muted)",
                 textDecoration: "none",
@@ -147,7 +147,7 @@ export default function Sidebar() {
         <p
           style={{
             ...mono,
-            fontSize: "14px",
+            fontSize: "12px",
             fontWeight: 400,
             color: "var(--muted)",
             letterSpacing: "0.1em",
@@ -163,7 +163,7 @@ export default function Sidebar() {
             rel={link.external ? "noopener noreferrer" : undefined}
             style={{
               ...mono,
-              fontSize: "14px",
+              fontSize: "12px",
               fontWeight: 400,
               color: "var(--foreground)",
               textDecoration: "none",

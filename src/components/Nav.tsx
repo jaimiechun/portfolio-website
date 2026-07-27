@@ -21,7 +21,7 @@ export default function Nav() {
         href="/"
         style={{
           fontFamily: "var(--font-mono)",
-          fontSize: "14px",
+          fontSize: "12px",
           fontWeight: 500,
           letterSpacing: "0.05em",
           color: "var(--foreground)",
