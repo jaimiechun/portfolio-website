@@ -58,7 +58,7 @@ export default function TechStack() {
       <p
         style={{
           fontFamily: "var(--font-geist-sans), 'Geist Fallback', sans-serif",
-          fontSize: "13px",
+          fontSize: "10px",
           fontWeight: 500,
           letterSpacing: "0.08em",
           textTransform: "uppercase",
