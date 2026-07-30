@@ -5,7 +5,7 @@ import { useState } from "react";
 type Book = { title: string; author: string; src: string };
 
 const currentlyReading: Book[] = [
-  { title: "Talking to Strangers", author: "by Malcolm Gladwell", src: "/images/books/talking-to-strangers.jpg" },
+  { title: "Empire of AI", author: "Karen Hao", src: "/images/books/empire-of-ai.jpg" },
   { title: "The Wind-Up Bird Chronicle", author: "by Haruki Murakami", src: "/images/books/wind-up-bird.jpg" },
 ];
 
