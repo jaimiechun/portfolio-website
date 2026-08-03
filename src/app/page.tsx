@@ -20,9 +20,11 @@ const projects = [
   },
   {
     slug: "cache-app",
-    title: "Cache: A Collaborative List Note-taking App",
+    title: "Listly: A Collaborative List Note-taking App",
     category: "PERSONAL PROJECT",
     date: "MARCH–MAY 2026",
+    images: ["/images/cache-thumbnail.png"],
+    cursorLabel: "VIEW CASE STUDY",
   },
   {
     slug: "journalism-web-story",
