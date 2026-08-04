@@ -97,7 +97,7 @@ export default function Bookshelf() {
           whiteSpace: "nowrap",
         }}
       >
-        All my life, I&apos;ve been deeply moved and shaped by the books I read and the movies I watch. I&apos;d like to share some of my favorites!
+        Books &amp; Movies Aficionado
       </p>
 
       <div style={{ display: "flex", gap: "24px", alignItems: "stretch" }}>
