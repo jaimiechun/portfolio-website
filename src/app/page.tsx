@@ -19,7 +19,7 @@ const projects = [
     cursorLabel: "VIEW PROJECT",
   },
   {
-    slug: "cache-app",
+    slug: "listly",
     title: "Listly: A Collaborative List Note-taking App",
     category: "PERSONAL PROJECT",
     date: "MARCH–MAY 2026",
