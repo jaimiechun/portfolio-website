@@ -66,7 +66,7 @@ export default function ListlyCaseStudy() {
           Creating a way to never forget what you want to do with your loved ones.
         </p>
         <a
-          href="https://list-app-87.web.app"
+          href="https://list-app-87.web.app/"
           target="_blank"
           rel="noopener noreferrer"
           data-cursor="link"

@@ -92,7 +92,7 @@ export default function About() {
         <hr style={sectionDivider} />
 
         {/* Bookshelf */}
-        <div style={{ marginTop: "64px" }}>
+        <div style={{ marginTop: "40px" }}>
           <Bookshelf />
         </div>
       </div>

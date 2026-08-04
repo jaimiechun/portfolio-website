@@ -2,17 +2,25 @@
 
 import { useState } from "react";
 
-type Book = { title: string; author: string; src: string };
+type Media = { title: string; author: string; src: string };
 
-const currentlyReading: Book[] = [
+const currentlyReading: Media[] = [
   { title: "Empire of AI", author: "Karen Hao", src: "/images/books/empire-of-ai.jpg" },
   { title: "The Wind-Up Bird Chronicle", author: "by Haruki Murakami", src: "/images/books/wind-up-bird.jpg" },
 ];
 
-const booksThatChangedMe: Book[] = [
+const booksThatChangedMe: Media[] = [
   { title: "The Idiot", author: "by Fyodor Dostoevsky", src: "/images/books/the-idiot.jpg" },
   { title: "My Beloved World", author: "by Sonia Sotomayor", src: "/images/books/my-beloved-world.jpg" },
   { title: "The Story of a New Name", author: "Elena Ferrante", src: "/images/books/story-of-a-new-name.jpg" },
+];
+
+const films: Media[] = [
+  { title: "A Beautiful Mind", author: "dir. Ron Howard", src: "/images/films/a-beautiful-mind.jpg" },
+  { title: "Inception", author: "dir. Christopher Nolan", src: "/images/films/inception.jpg" },
+  { title: "Scent of a Woman", author: "dir. Martin Brest", src: "/images/films/scent-of-a-woman.jpg" },
+  { title: "Schindler's List", author: "dir. Steven Spielberg", src: "/images/films/schindlers-list.jpg" },
+  { title: "Stepmom", author: "dir. Chris Columbus", src: "/images/films/stepmom.jpg" },
 ];
 
 const geist: React.CSSProperties = {
@@ -23,7 +31,7 @@ const geist: React.CSSProperties = {
   letterSpacing: "0",
 };
 
-function BookCard({ book }: { book: Book }) {
+function MediaCard({ item }: { item: Media }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -43,8 +51,8 @@ function BookCard({ book }: { book: Book }) {
         }}
       >
         <img
-          src={book.src}
-          alt={`${book.title} ${book.author}`}
+          src={item.src}
+          alt={`${item.title} ${item.author}`}
           loading="lazy"
           decoding="async"
           style={{
@@ -67,8 +75,8 @@ function BookCard({ book }: { book: Book }) {
         }}
         aria-hidden={!hovered}
       >
-        <p>{book.title}</p>
-        <p>{book.author}</p>
+        <p>{item.title}</p>
+        <p>{item.author}</p>
       </div>
     </div>
   );
@@ -80,14 +88,16 @@ export default function Bookshelf() {
       <p
         style={{
           fontFamily: "var(--font-mono)",
-          fontSize: "12px",
+          fontSize: "16px",
           fontWeight: 400,
-          letterSpacing: "0.05em",
+          lineHeight: 1.5,
+          letterSpacing: "0",
           color: "var(--foreground)",
-          marginBottom: "16px",
+          marginBottom: "24px",
+          whiteSpace: "nowrap",
         }}
       >
-        MY BOOKSHELF
+        All my life, I&apos;ve been deeply moved and shaped by the books I read and the movies I watch. I&apos;d like to share some of my favorites!
       </p>
 
       <div style={{ display: "flex", gap: "24px", alignItems: "stretch" }}>
@@ -98,7 +108,7 @@ export default function Bookshelf() {
           </p>
           <div style={{ display: "flex", gap: "24px" }}>
             {currentlyReading.map((book) => (
-              <BookCard key={book.title} book={book} />
+              <MediaCard key={book.title} item={book} />
             ))}
           </div>
         </div>
@@ -123,9 +133,21 @@ export default function Bookshelf() {
           </p>
           <div style={{ display: "flex", gap: "24px" }}>
             {booksThatChangedMe.map((book) => (
-              <BookCard key={book.title} book={book} />
+              <MediaCard key={book.title} item={book} />
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Films */}
+      <div style={{ marginTop: "40px" }}>
+        <p style={{ ...geist, fontStyle: "italic", fontWeight: 600, marginBottom: "12px" }}>
+          films i wish to watch for the first time again
+        </p>
+        <div style={{ display: "flex", gap: "24px" }}>
+          {films.map((film) => (
+            <MediaCard key={film.title} item={film} />
+          ))}
         </div>
       </div>
     </div>
