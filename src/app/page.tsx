@@ -24,7 +24,7 @@ const projects = [
     category: "PERSONAL PROJECT",
     date: "MARCH–MAY 2026",
     images: ["/images/cache-thumbnail.png"],
-    cursorLabel: "VIEW CASE STUDY",
+    cursorLabel: "VIEW PROJECT",
   },
   {
     slug: "journalism-web-story",
