@@ -8,7 +8,7 @@ type SidebarLink = { label: string; href: string; external?: boolean };
 
 const navLinks: SidebarLink[] = [
   { label: "PROJECTS", href: "/" },
-  { label: "PLAY", href: "/play" },
+  { label: "AND?", href: "/play" },
   { label: "ABOUT", href: "/about" },
 ];
 

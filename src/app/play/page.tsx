@@ -1,4 +1,5 @@
 import Sidebar from "@/components/Sidebar";
+import PlayCanvas from "@/components/PlayCanvas";
 
 export default function Play() {
   return (
@@ -6,17 +7,8 @@ export default function Play() {
       <Sidebar />
 
       {/* Main content */}
-      <div style={{ flex: 1, padding: "16px 32px 100px 44px" }}>
-        <p
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "12px",
-            letterSpacing: "0.05em",
-            color: "var(--muted)",
-          }}
-        >
-          COMING SOON ✦
-        </p>
+      <div style={{ flex: 1, overflow: "hidden" }}>
+        <PlayCanvas />
       </div>
     </div>
   );

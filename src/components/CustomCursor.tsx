@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
-  const [mode, setMode] = useState<"dot" | "view" | "link">("dot");
+  const [mode, setMode] = useState<"dot" | "view" | "link" | "drag">("dot");
   const [label, setLabel] = useState("VIEW CASE STUDY");
   const [enabled, setEnabled] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -37,9 +37,13 @@ export default function CustomCursor() {
     const onOver = (e: MouseEvent) => {
       const target = e.target as Element;
       const viewEl = target.closest?.('[data-cursor="view"]') as HTMLElement | null;
+      const dragEl = target.closest?.('[data-cursor="drag"]') as HTMLElement | null;
       if (viewEl) {
         setLabel(viewEl.dataset.cursorLabel || "VIEW CASE STUDY");
         setMode("view");
+      } else if (dragEl) {
+        setLabel(dragEl.dataset.cursorLabel || "SCROLL/DRAG TO MOVE");
+        setMode("drag");
       } else if (target.closest?.('a, button, [data-cursor="link"]')) {
         setMode("link");
       } else {
@@ -86,9 +90,9 @@ export default function CustomCursor() {
           background: "#D97F76",
           color: "#fff",
           borderRadius: "999px",
-          padding: mode === "view" ? "9px 16px" : 0,
-          width: mode === "view" ? "auto" : "14px",
-          height: mode === "view" ? "auto" : "14px",
+          padding: mode === "view" || mode === "drag" ? "9px 16px" : 0,
+          width: mode === "view" || mode === "drag" ? "auto" : "14px",
+          height: mode === "view" || mode === "drag" ? "auto" : "14px",
           whiteSpace: "nowrap",
           fontFamily: "var(--font-mono)",
           fontSize: "11px",
@@ -113,6 +117,24 @@ export default function CustomCursor() {
             >
               <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
               <circle cx="12" cy="12" r="3" />
+            </svg>
+            {label}
+          </>
+        )}
+        {mode === "drag" && (
+          <>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden
+            >
+              <path d="M12 2v20M2 12h20M6 6l-4 6 4 6M18 6l4 6-4 6" />
             </svg>
             {label}
           </>
