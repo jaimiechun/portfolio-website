@@ -87,7 +87,7 @@ export default function CustomCursor() {
           display: "flex",
           alignItems: "center",
           gap: "8px",
-          background: "#D97F76",
+          background: "#FF3E00",
           color: "#fff",
           borderRadius: "999px",
           padding: mode === "view" || mode === "drag" ? "9px 16px" : 0,
