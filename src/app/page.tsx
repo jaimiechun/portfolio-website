@@ -32,7 +32,8 @@ const left: Project[] = [
     src: "/images/work/live-map.jpg",
     w: 729,
     h: 583,
-    href: "/work/data-viz-water-security",
+    // No href on purpose — the case study isn't written, so the card is a
+    // static image that only reports "CURRENTLY BUILDING" on hover.
     cursorTag: "CURRENTLY BUILDING",
   },
   {
@@ -106,8 +107,19 @@ function Card({ project }: { project: Project }) {
     </>
   );
 
-  // Editorial Design has no destination yet, so it renders as plain content.
-  if (!project.href) return <div className={styles.card}>{body}</div>;
+  // A card with no destination is plain content — not focusable, not clickable
+  // — but still carries its cursor tag so hovering explains why.
+  if (!project.href) {
+    return (
+      <div
+        className={styles.card}
+        data-cursor={project.cursorTag ? "tag" : undefined}
+        data-cursor-label={project.cursorTag}
+      >
+        {body}
+      </div>
+    );
+  }
 
   return (
     <Link

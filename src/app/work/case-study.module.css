@@ -1,0 +1,480 @@
+/* Shared case-study template, used by every /work/... page in v2.
+   Composition follows the Figma case-study frames (sidebar, full-height
+   divider at x=270, hero bleeding to the right edge); type sizes and spacing
+   follow emmiwu.com/editorial-illo, the reference's equivalent page.
+
+   Each page sets two variables on .page:
+     --case-accent  the project's colour (labels, hero fill)
+     --hero-h       hero height in frame pixels (the hero is 1242 wide)
+
+   Everything below the fixed 56px header is offset from the frames' y=68, so
+   the page keeps its proportions at any width without the header covering
+   it. */
+
+.page {
+  position: relative;
+  width: var(--page-w);
+  margin: 0 auto;
+  padding-top: 56px;
+  padding-bottom: calc(160 * var(--u));
+  color: #000;
+  --case-accent: #000;
+  --hero-h: 480;
+}
+
+/* ---- sidebar ------------------------------------------------------------- */
+
+/* Sticky rather than absolute, so the section links stay reachable the whole
+   way down. It is the first child of .page and zero-height, so it takes no
+   space in the flow — the hero still starts at the top — and its children
+   overflow it. Sticky clamps it to `top` immediately, which puts it at the
+   frame's y=99 from the first paint. */
+.sidebar {
+  position: sticky;
+  top: calc(56px + 31 * var(--u));
+  height: 0;
+  margin-left: var(--gutter);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* Reference stacks sidebar entries on a 32px pitch; with a 19.8px line box
+     that is a 12px gap. */
+  gap: calc(12 * var(--u));
+}
+
+.sideLink {
+  font-family: var(--font-plex-mono);
+  font-size: calc(12 * var(--u));
+  line-height: calc(19.8 * var(--u));
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #000;
+  text-decoration: none;
+  white-space: nowrap;
+  width: max-content;
+}
+
+/* "← HOME" sits on a grey chip in the frames. */
+.home {
+  composes: sideLink;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(4 * var(--u));
+  background: rgba(217, 217, 217, 0.78);
+  border-radius: 1px;
+  padding: 0 calc(3 * var(--u));
+  transition: background 0.15s ease;
+}
+
+.home:hover {
+  background: rgba(217, 217, 217, 1);
+}
+
+/* The exported asset points right; the frames rotate it 180° to point back. */
+.arrow {
+  width: calc(11 * var(--u));
+  height: auto;
+  flex-shrink: 0;
+  transform: rotate(180deg);
+}
+
+.sectionLink {
+  composes: sideLink;
+  opacity: 0.55;
+  transition: opacity 0.15s ease;
+}
+
+.sectionLink:hover {
+  opacity: 0.85;
+}
+
+/* ---- divider ------------------------------------------------------------- */
+
+/* Runs the height of the page at x=270, separating sidebar from content. */
+.divider {
+  position: absolute;
+  left: calc(270 * var(--u));
+  top: 56px;
+  bottom: 0;
+  width: 1px;
+  background: var(--rule);
+}
+
+/* ---- hero ---------------------------------------------------------------- */
+
+/* Bleeds from the divider to the right edge. Children can be a single cover
+   image, or absolutely placed pieces (as Listly's phones are). */
+.hero {
+  position: relative;
+  overflow: hidden;
+  margin-left: calc(270 * var(--u));
+  height: calc(var(--hero-h) * var(--u));
+  background: var(--case-accent);
+}
+
+.heroCover {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Artwork floated on the hero's fill rather than bleeding to its edges, as
+   Perspective's frame does. Width is a percentage of the 1242 hero so it holds
+   its position at any page width; the element keeps its own aspect ratio. */
+.heroInset {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  height: auto;
+  box-shadow: 0 calc(12 * var(--u)) calc(32 * var(--u)) rgba(0, 0, 0, 0.14);
+}
+
+/* ---- body ---------------------------------------------------------------- */
+
+/* Reference content column: 1104 wide starting at 304. */
+.body {
+  margin-left: calc(304 * var(--u));
+  width: calc(1104 * var(--u));
+}
+
+.title {
+  /* Frames put the title ~50px under the hero; the reference uses 48. */
+  margin-top: calc(50 * var(--u));
+  /* OVERVIEW links here, so clear the fixed header. */
+  scroll-margin-top: calc(56px + 24 * var(--u));
+  font-family: var(--font-self-modern);
+  font-size: calc(24 * var(--u));
+  line-height: calc(28.8 * var(--u));
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Four equal columns separated by a fixed 20px gap. The reference holds that
+   gap at every width (261w at 1512, 231w at 1280, 20px between both times)
+   and lets the columns flex, rather than scaling the gap down with the page. */
+.metaRow {
+  margin-top: calc(12 * var(--u));
+  display: flex;
+  gap: 20px;
+}
+
+.metaCol {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* Mono label in the project colour — meta columns and section headers alike. */
+.label {
+  font-family: var(--font-plex-mono);
+  font-size: calc(12 * var(--u));
+  line-height: calc(19.8 * var(--u));
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--case-accent);
+}
+
+/* Values sit at the same 55% as body copy, so only the labels carry full
+   weight — the frame specifies rgba(0, 0, 0, 0.54). */
+.metaValue {
+  margin-top: calc(6 * var(--u));
+  font-family: var(--font-figtree);
+  font-size: calc(14 * var(--u));
+  line-height: calc(16.8 * var(--u));
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.metaValue em {
+  font-style: italic;
+}
+
+/* Secondary text — the year half of a role, and body copy. */
+.dim {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/* ---- sections ------------------------------------------------------------ */
+
+/* Reference: label -> 12 -> heading (20/24) -> 12 -> body (14/16.8). */
+.section {
+  margin-top: calc(72 * var(--u));
+  scroll-margin-top: calc(56px + 24 * var(--u));
+}
+
+/* The head of the page sits closer to the first section than sections do to
+   each other — whether it ends in the meta row or, on pages that have none, in
+   the title itself. */
+.metaRow + .section,
+.title + .section {
+  margin-top: calc(40 * var(--u));
+}
+
+.sectionHeading {
+  margin-top: calc(12 * var(--u));
+  font-family: var(--font-figtree);
+  font-size: calc(20 * var(--u));
+  line-height: calc(24 * var(--u));
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.prose {
+  margin-top: calc(12 * var(--u));
+  font-family: var(--font-figtree);
+  font-size: calc(14 * var(--u));
+  line-height: calc(16.8 * var(--u));
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/* Paragraphs are separated by a blank line, as in the frames. */
+.prose > p + p {
+  margin-top: calc(16.8 * var(--u));
+}
+
+.media {
+  display: block;
+  margin: calc(32 * var(--u)) auto 0;
+  height: auto;
+}
+
+/* Bulleted findings, at the same rhythm as a run of paragraphs. */
+.bullets {
+  margin-top: calc(16.8 * var(--u));
+  padding-left: calc(20 * var(--u));
+  list-style: disc;
+}
+
+.bullets > li + li {
+  margin-top: calc(6 * var(--u));
+}
+
+/* ---- figures ------------------------------------------------------------- */
+
+/* Images sized by flex-grow set to their aspect ratio, so a row of them lands
+   on one common height with tops and bottoms aligned. */
+.gallery {
+  margin-top: calc(48 * var(--u));
+  display: flex;
+  align-items: flex-start;
+  gap: calc(24 * var(--u));
+}
+
+.galleryItem {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+}
+
+.galleryItem img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.bordered {
+  border: 1px solid var(--rule);
+}
+
+.caption {
+  margin-top: calc(10 * var(--u));
+  text-align: center;
+}
+
+/* Body text beside a supporting image. */
+.split {
+  margin-top: calc(12 * var(--u));
+  display: flex;
+  align-items: flex-start;
+  gap: calc(40 * var(--u));
+}
+
+.split > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* ---- numbered steps ------------------------------------------------------ */
+
+/* An <ol> for semantics; the numbers are drawn by .stepNum instead. */
+.steps {
+  margin-top: calc(24 * var(--u));
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.step {
+  flex: 1 1 0;
+  min-width: 0;
+  border: 1px solid var(--rule);
+  padding: calc(16 * var(--u));
+}
+
+.stepHead {
+  display: flex;
+  align-items: center;
+  gap: calc(12 * var(--u));
+}
+
+.stepNum {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: calc(36 * var(--u));
+  height: calc(36 * var(--u));
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  font-family: var(--font-plex-mono);
+  font-size: calc(13 * var(--u));
+  line-height: 1;
+}
+
+.stepTitle {
+  font-family: var(--font-figtree);
+  font-size: calc(16 * var(--u));
+  line-height: calc(19.2 * var(--u));
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.stepBody {
+  margin-top: calc(20 * var(--u));
+}
+
+/* ---- highlight boxes ----------------------------------------------------- */
+
+.box {
+  margin-top: calc(20 * var(--u));
+  border: 1px solid var(--rule);
+  padding: calc(24 * var(--u)) calc(28 * var(--u));
+}
+
+.boxTitle {
+  font-family: var(--font-figtree);
+  font-size: calc(16 * var(--u));
+  line-height: calc(19.2 * var(--u));
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.footnote {
+  display: flex;
+  gap: calc(8 * var(--u));
+}
+
+/* ---- narrow screens ------------------------------------------------------ */
+
+@media (max-width: 900px) {
+  .page {
+    width: 100%;
+    padding: 72px 20px 72px;
+  }
+
+  .sidebar,
+  .divider {
+    display: none;
+  }
+
+  .hero {
+    margin-left: 0;
+    height: auto;
+    aspect-ratio: 1242 / var(--hero-h);
+  }
+
+  .body {
+    margin-left: 0;
+    width: auto;
+  }
+
+  .title {
+    margin-top: 28px;
+    font-size: 22px;
+    line-height: 1.25;
+  }
+
+  .metaRow,
+  .steps {
+    margin-top: 24px;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .label {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .metaValue,
+  .prose {
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .metaValue {
+    margin-top: 6px;
+  }
+
+  .section {
+    margin-top: 48px;
+  }
+
+  .metaRow + .section,
+  .title + .section {
+    margin-top: 28px;
+  }
+
+  .sectionHeading {
+    margin-top: 10px;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .prose {
+    margin-top: 10px;
+  }
+
+  .prose > p + p {
+    margin-top: 14px;
+  }
+
+  .media {
+    width: 100% !important;
+    margin-top: 24px;
+  }
+
+  .gallery,
+  .split {
+    margin-top: 24px;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .bullets {
+    margin-top: 14px;
+    padding-left: 20px;
+  }
+
+  .step,
+  .box {
+    padding: 16px;
+  }
+
+  .stepNum {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+
+  .stepTitle,
+  .boxTitle {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+}
