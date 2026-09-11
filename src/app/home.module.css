@@ -12,8 +12,11 @@
   color: #000;
 }
 
+/* The hero sits low in its white space rather than centred in it: the total
+   air between the header and the first thumbnail is unchanged, but it is
+   nearly all above the text, leaving the last line close to the thumbnail. */
 .hero {
-  margin-top: calc(150 * var(--u));
+  margin-top: calc(231 * var(--u));
   width: calc(606 * var(--u));
   font-family: var(--font-self-modern);
   font-size: calc(40 * var(--u));
@@ -21,9 +24,10 @@
   font-weight: 400;
 }
 
-/* Frame has the hero at y=150 and the first thumbnail at y=401. */
+/* The first thumbnail stays at the frame's y=401; 26px off the hero's box puts
+   the last line "rigor of a journalist" 27px above its top edge. */
 .grid {
-  margin-top: calc(107 * var(--u));
+  margin-top: calc(26 * var(--u));
   display: flex;
   align-items: flex-start;
   gap: calc(18 * var(--u));
