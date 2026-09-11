@@ -52,14 +52,18 @@
   opacity: 0.85;
 }
 
-/* The wordmark stays solid and signals itself with colour instead. */
+/* The wordmark rests at the same 55% as the nav links, but signals itself with
+   colour rather than opacity — so hover also lifts it to full strength, or the
+   accent would read as a muted brown. */
 .wordmark {
   composes: link;
   margin-right: auto;
-  transition: color 0.15s ease;
+  opacity: 0.55;
+  transition: color 0.15s ease, opacity 0.15s ease;
 }
 
 .wordmark:hover {
+  opacity: 1;
   color: var(--accent);
 }
 
