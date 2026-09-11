@@ -51,6 +51,7 @@ const left: Project[] = [
     src: "/images/work/editorial-design.jpg",
     w: 729,
     h: 641,
+    href: "/work/editorial-design",
   },
 ];
 

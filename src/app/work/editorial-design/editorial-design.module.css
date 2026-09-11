@@ -1,0 +1,216 @@
+/* Editorial Design case study.
+   Composition from Figma frame 155:235; type sizes and spacing from
+   emmiwu.com/editorial-illo, the reference's equivalent project page.
+
+   Everything below the fixed 56px header is offset from the frame's y=68,
+   so the page keeps its proportions at any width without the header
+   overlapping it. */
+
+.page {
+  position: relative;
+  width: var(--page-w);
+  margin: 0 auto;
+  padding-top: 56px;
+  padding-bottom: calc(160 * var(--u));
+  color: #000;
+  /* The periwinkle this project is keyed to — the hero fill and the thumbnail
+     board on the home page are the same value. */
+  --editorial-accent: #7d83ee;
+}
+
+/* ---- sidebar ------------------------------------------------------------- */
+
+.sidebar {
+  position: absolute;
+  left: var(--gutter);
+  top: calc(56px + 31 * var(--u));
+  display: flex;
+  flex-direction: column;
+  /* Reference stacks sidebar entries on a 32px pitch; with a 19.8px line box
+     that is a 12px gap. */
+  gap: calc(12 * var(--u));
+}
+
+.sideLink {
+  font-family: var(--font-plex-mono);
+  font-size: calc(12 * var(--u));
+  line-height: calc(19.8 * var(--u));
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #000;
+  text-decoration: none;
+  white-space: nowrap;
+  width: max-content;
+}
+
+/* "← HOME" sits on a grey chip in the frame. */
+.home {
+  composes: sideLink;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(4 * var(--u));
+  background: rgba(217, 217, 217, 0.78);
+  border-radius: 1px;
+  padding: 0 calc(3 * var(--u));
+  transition: background 0.15s ease;
+}
+
+.home:hover {
+  background: rgba(217, 217, 217, 1);
+}
+
+.arrow {
+  width: calc(11 * var(--u));
+  height: auto;
+  flex-shrink: 0;
+}
+
+.sectionLink {
+  composes: sideLink;
+  opacity: 0.55;
+  transition: opacity 0.15s ease;
+}
+
+.sectionLink:hover {
+  opacity: 0.85;
+}
+
+/* ---- divider ------------------------------------------------------------- */
+
+/* Runs the height of the page at x=270, separating sidebar from content. */
+.divider {
+  position: absolute;
+  left: calc(270 * var(--u));
+  top: 56px;
+  bottom: 0;
+  width: 1px;
+  background: var(--rule);
+}
+
+/* ---- hero ---------------------------------------------------------------- */
+
+/* Bleeds from the divider to the right edge. Solid fill until artwork lands. */
+.hero {
+  margin-left: calc(270 * var(--u));
+  height: calc(480 * var(--u));
+  background: var(--editorial-accent);
+}
+
+.hero img,
+.hero video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---- body ---------------------------------------------------------------- */
+
+/* Reference content column: 1104 wide starting at 304. */
+.body {
+  margin-left: calc(304 * var(--u));
+  width: calc(1104 * var(--u));
+}
+
+.title {
+  /* Frame puts the title 50px under the hero; the reference uses 48. */
+  margin-top: calc(50 * var(--u));
+  font-family: var(--font-self-modern);
+  font-size: calc(24 * var(--u));
+  line-height: calc(28.8 * var(--u));
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Four equal columns separated by a fixed 20px gap. The reference holds that
+   gap at every width (261w at 1512, 231w at 1280, 20px between both times)
+   and lets the columns flex, rather than scaling the gap down with the page. */
+.metaRow {
+  margin-top: calc(12 * var(--u));
+  display: flex;
+  gap: 20px;
+}
+
+.metaCol {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.metaLabel {
+  font-family: var(--font-plex-mono);
+  font-size: calc(12 * var(--u));
+  line-height: calc(19.8 * var(--u));
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--editorial-accent);
+}
+
+.metaValue {
+  margin-top: calc(6 * var(--u));
+  font-family: var(--font-figtree);
+  font-size: calc(14 * var(--u));
+  line-height: calc(16.8 * var(--u));
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.metaValue em {
+  font-style: italic;
+}
+
+/* The year half of each role, dimmed in the frame. */
+.dim {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/* ---- narrow screens ------------------------------------------------------ */
+
+@media (max-width: 900px) {
+  .page {
+    width: 100%;
+    padding: 72px 20px 72px;
+  }
+
+  .sidebar,
+  .divider {
+    display: none;
+  }
+
+  .hero {
+    margin-left: 0;
+    height: auto;
+    aspect-ratio: 1242 / 480;
+  }
+
+  .body {
+    margin-left: 0;
+    width: auto;
+  }
+
+  .title {
+    margin-top: 28px;
+    font-size: 22px;
+    line-height: 1.25;
+  }
+
+  .metaRow {
+    margin-top: 24px;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .metaCol {
+    width: auto;
+  }
+
+  .metaLabel {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .metaValue {
+    margin-top: 6px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
