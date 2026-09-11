@@ -158,9 +158,32 @@
 
 /* ---- photos -------------------------------------------------------------- */
 
+/* The three photos lift into place on load. Timing traced from the reference
+   recording: the three move together rather than in sequence, travel about
+   24px, and fade over roughly a third of a second on a steep ease-out — a
+   little over half the opacity is spent by the midpoint. `backwards` holds the
+   from-state until the animation starts, so nothing flashes in place first. */
 .photo {
   position: absolute;
   overflow: hidden;
+  animation: rise 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) backwards;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(calc(24 * var(--u)));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo {
+    animation: none;
+  }
 }
 
 .photo img {
