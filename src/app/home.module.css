@@ -1,0 +1,134 @@
+/* Home, v2.
+   Structure and copy from Figma frame 22:2 (MacBook Pro 14", 1512x2464).
+   Type sizes, card spacing and column widths from emmiwu.com, per Jaimie.
+
+   The grid falls out of the same 18px --gutter the About page uses:
+   18 + 729 + 18 + 729 + 18 = 1512, so the columns need no hardcoded width. */
+
+.page {
+  width: var(--page-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter) calc(120 * var(--u));
+  color: #000;
+}
+
+.hero {
+  margin-top: calc(150 * var(--u));
+  width: calc(606 * var(--u));
+  font-family: var(--font-self-modern);
+  font-size: calc(40 * var(--u));
+  line-height: calc(48 * var(--u));
+  font-weight: 400;
+}
+
+/* Frame has the hero at y=150 and the first thumbnail at y=401. */
+.grid {
+  margin-top: calc(107 * var(--u));
+  display: flex;
+  align-items: flex-start;
+  gap: calc(18 * var(--u));
+}
+
+.col {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  /* emmiwu leaves 18px between one card's description and the next thumbnail. */
+  gap: calc(18 * var(--u));
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: opacity 0.25s ease;
+}
+
+.card:hover .thumb {
+  opacity: 0.72;
+}
+
+/* The "CURRENTLY BUILDING" pill is not drawn here — it rides the cursor via
+   data-cursor="tag", the same mechanism as "Hi!" on the About page. It was
+   painted out of live-map.jpg so it only appears on hover. */
+
+/* thumbnail -> meta 12, meta -> title 6, title -> description 6 */
+.meta {
+  margin-top: calc(12 * var(--u));
+  font-family: var(--font-plex-mono);
+  font-size: calc(13.5 * var(--u));
+  line-height: calc(22.275 * var(--u));
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: rgba(0, 0, 0, 0.58);
+}
+
+.title {
+  margin-top: calc(6 * var(--u));
+  font-family: var(--font-self-modern);
+  font-size: calc(21 * var(--u));
+  line-height: calc(25.2 * var(--u));
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.desc {
+  margin-top: calc(6 * var(--u));
+  font-family: var(--font-figtree);
+  font-size: calc(15.75 * var(--u));
+  line-height: calc(18.9 * var(--u));
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* ---- narrow screens ------------------------------------------------------ */
+
+@media (max-width: 900px) {
+  .page {
+    width: 100%;
+    padding: 0 20px 72px;
+  }
+
+  .hero {
+    margin-top: 104px;
+    width: auto;
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  .grid {
+    margin-top: 48px;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .col {
+    gap: 36px;
+  }
+
+  .meta {
+    margin-top: 12px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .title {
+    margin-top: 6px;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .desc {
+    margin-top: 6px;
+    font-size: 15px;
+    line-height: 1.35;
+  }
+}

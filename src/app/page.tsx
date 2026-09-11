@@ -1,77 +1,147 @@
-import ProjectCard from "@/components/ProjectCard";
-import Sidebar from "@/components/Sidebar";
+import Link from "next/link";
+import AutoVideo from "@/components/AutoVideo";
+import styles from "./home.module.css";
 
-const projects = [
+type Project = {
+  meta: string;
+  title: string;
+  desc: string;
+  src: string;
+  /** When set, the thumbnail plays this on loop instead of showing `src`,
+   *  which becomes its poster. */
+  video?: string;
+  /**
+   * Thumbnail box, taken position-for-position from the matching card on
+   * emmiwu.com — not the native size of the artwork. The image is cover-fit
+   * into it, so each Figma frame should be redesigned to this ratio.
+   */
+  w: number;
+  h: number;
+  href?: string;
+  external?: boolean;
+  /** Turns the cursor into a labelled pill over this card, as on the About page. */
+  cursorTag?: string;
+};
+
+// Left and right stacks, in the order the frame lays them out.
+const left: Project[] = [
   {
-    slug: "data-viz-water-security",
-    title: "Data Visualization for Flagship Report on Global Water Security",
-    category: "INTERNSHIP",
-    date: "JUNE 2026–PRESENT",
-    images: ["/images/wise-gender-map.jpg", "/images/wise-collection-map.jpg"],
-    cursorLabel: "IN PROGRESS",
+    meta: "WISE SCALE - SUMMER 2026",
+    title: "Live Map for Data Collection",
+    desc: "Visualizing and understanding data on water insecurity across the globe",
+    src: "/images/work/live-map.jpg",
+    w: 729,
+    h: 583,
+    href: "/work/data-viz-water-security",
+    cursorTag: "CURRENTLY BUILDING",
   },
   {
-    slug: "synthetic-audience-auditing",
-    title: "Perspective: Synthetic Audience Auditing",
-    category: "KNIGHT LAB PROJECT",
-    date: "FEB–JUNE 2026",
-    embed: "/embeds/perspectives.html",
-    cursorLabel: "VIEW PROJECT",
+    meta: "APP DEVELOPMENT - SPRING 2026",
+    title: "Collaborative Bucket List Concept",
+    desc: "Building a simple web app to make sure we never miss out of things we want to do with loved ones",
+    src: "/images/work/bucket-list.jpg",
+    w: 729,
+    h: 641,
+    href: "/work/listly",
   },
   {
-    slug: "listly",
-    title: "Listly: A Collaborative List Note-taking App",
-    category: "PERSONAL PROJECT",
-    date: "MARCH–MAY 2026",
-    images: ["/images/cache-thumbnail.png"],
-    cursorLabel: "VIEW PROJECT",
-  },
-  {
-    slug: "journalism-web-story",
-    title: "Journalism Web Story",
-    category: "PERSONAL PROJECT",
-    date: "MARCH–MAY 2026",
-    video: "/videos/journalism-web-story.mp4",
-    cursorLabel: "READ FULL STORY",
-    externalUrl: "https://jaimiechun.github.io/morning-jay-s-story/",
+    meta: "VARIOUS PUBLICATIONS - ONGOING",
+    title: "Editorial Design",
+    desc: "Creating editorial illustrations to translate narratives into visual storytelling.",
+    src: "/images/work/editorial-design.jpg",
+    w: 729,
+    h: 641,
   },
 ];
 
+const right: Project[] = [
+  {
+    meta: "KNIGHT LAB - SPRING 2026",
+    title: "Digital Twins in Journalism",
+    desc: "Deeply trained AI personalities helping identify blinds spots before publication",
+    src: "/images/work/digital-twins.png",
+    video: "/videos/digital-twins.mp4",
+    w: 729,
+    h: 502,
+    href: "/work/synthetic-audience-auditing",
+  },
+  {
+    meta: "STORYTELLING FOR THE WEB - SPRING 2026",
+    title: "A Chicago Food Business Story",
+    desc: "Writing, photographing and designing a Chicago story for the web",
+    src: "/images/work/chicago-food.png",
+    video: "/videos/chicago-food.mp4",
+    w: 729,
+    h: 858,
+    href: "https://jaimiechun.github.io/morning-jay-s-story/",
+    external: true,
+  },
+];
+
+function Card({ project }: { project: Project }) {
+  const body = (
+    <>
+      {project.video ? (
+        <AutoVideo
+          className={styles.thumb}
+          src={project.video}
+          poster={project.src}
+          label={project.title}
+          style={{ aspectRatio: `${project.w} / ${project.h}` }}
+        />
+      ) : (
+        <img
+          className={styles.thumb}
+          src={project.src}
+          alt={project.title}
+          width={project.w}
+          height={project.h}
+          style={{ aspectRatio: `${project.w} / ${project.h}` }}
+        />
+      )}
+      <p className={styles.meta}>{project.meta}</p>
+      <h2 className={styles.title}>{project.title}</h2>
+      <p className={styles.desc}>{project.desc}</p>
+    </>
+  );
+
+  // Editorial Design has no destination yet, so it renders as plain content.
+  if (!project.href) return <div className={styles.card}>{body}</div>;
+
+  return (
+    <Link
+      href={project.href}
+      target={project.external ? "_blank" : undefined}
+      rel={project.external ? "noopener noreferrer" : undefined}
+      className={styles.card}
+      data-cursor={project.cursorTag ? "tag" : undefined}
+      data-cursor-label={project.cursorTag}
+    >
+      {body}
+    </Link>
+  );
+}
 
 export default function Home() {
   return (
-    <>
-      <div
-        style={{
-          display: "flex",
-          minHeight: "100vh",
-        }}
-      >
-        <Sidebar />
+    <div className={styles.page}>
+      <h1 className={styles.hero}>
+        I&rsquo;m Jaimie, an engineer who builds with the curiosity and rigor of
+        a journalist.
+      </h1>
 
-        {/* Main content */}
-        <main style={{ flex: 1, padding: "24px 24px 80px" }}>
-          <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
-            {/* Left column — starts at top, shorter images */}
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "16px" }}>
-              <ProjectCard {...projects[0]} imageAspect="17/12" />
-              <ProjectCard {...projects[2]} imageAspect="17/12" />
-            </div>
-            {/* Right column — same top, slightly taller images */}
-            <div
-              style={{
-                flex: 1,
-                display: "flex",
-                flexDirection: "column",
-                gap: "16px",
-              }}
-            >
-              <ProjectCard {...projects[1]} imageAspect="4/3" />
-              <ProjectCard {...projects[3]} imageAspect="4/3" />
-            </div>
-          </div>
-        </main>
+      <div className={styles.grid}>
+        <div className={styles.col}>
+          {left.map((p) => (
+            <Card key={p.title} project={p} />
+          ))}
+        </div>
+        <div className={styles.col}>
+          {right.map((p) => (
+            <Card key={p.title} project={p} />
+          ))}
+        </div>
       </div>
-    </>
+    </div>
   );
 }

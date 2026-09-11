@@ -15,7 +15,11 @@ export default function Nav() {
           JAIMIE CHUN
         </Link>
         {links.map(({ label, href }) => (
-          <Link key={label} href={href} className={styles.link}>
+          <Link
+            key={label}
+            href={href}
+            className={`${styles.link} ${styles.navLink}`}
+          >
             {label}
           </Link>
         ))}

@@ -10,7 +10,10 @@
   left: 0;
   right: 0;
   z-index: 70;
-  height: calc(56 * var(--u));
+  /* Fixed, not --u scaled: emmiwu's header keeps the same 56px bar and 12px
+     type at every width, letting only the links reflow. Scaling it made the
+     header shrink below 1512 and read smaller than the reference. */
+  height: 56px;
   background: var(--background);
   border-bottom: 1px solid var(--rule);
 }
@@ -24,24 +27,40 @@
   padding: 0 var(--gutter);
   display: flex;
   align-items: center;
-  gap: calc(20 * var(--u));
+  gap: 20px;
 }
 
 .link {
   font-family: var(--font-plex-mono);
-  font-size: calc(12 * var(--u));
+  font-size: 12px;
   font-weight: 500;
-  line-height: calc(19.8 * var(--u));
+  line-height: 19.8px;
   letter-spacing: 0.01em;
   color: #000;
   text-decoration: none;
   white-space: nowrap;
 }
 
-/* Pushes the three nav links to the right edge. */
+/* The three nav items carry the link affordance the cursor no longer does:
+   dimmed at rest, lifting slightly on hover. */
+.navLink {
+  opacity: 0.55;
+  transition: opacity 0.15s ease;
+}
+
+.navLink:hover {
+  opacity: 0.85;
+}
+
+/* The wordmark stays solid and signals itself with colour instead. */
 .wordmark {
   composes: link;
   margin-right: auto;
+  transition: color 0.15s ease;
+}
+
+.wordmark:hover {
+  color: var(--accent);
 }
 
 @media (max-width: 900px) {

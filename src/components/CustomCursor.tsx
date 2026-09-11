@@ -100,19 +100,20 @@ export default function CustomCursor() {
           // Tag padding is tuned so "Hi!" lands on the frame's 36x22 pill and
           // the coffee tag on its 144x33 one.
           padding: isPill ? (mode === "tag" ? "5px 10px" : "9px 16px") : 0,
-          width: isPill ? "auto" : "14px",
-          height: isPill ? "auto" : "14px",
-          // Photo tags wrap to two lines the way they do in the Figma frame.
-          whiteSpace: mode === "tag" ? "normal" : "nowrap",
-          maxWidth: mode === "tag" ? "144px" : undefined,
+          width: isPill ? "auto" : "18px",
+          height: isPill ? "auto" : "18px",
+          // Short tags stay on one line; only a long one wraps to two, the way
+          // "Made with <3 & lots of coffee" does in the frame.
+          whiteSpace: mode === "tag" && label.length > 20 ? "normal" : "nowrap",
+          maxWidth: mode === "tag" && label.length > 20 ? "144px" : undefined,
           textAlign: "center",
           fontFamily: mode === "tag" ? "var(--font-plex-mono)" : "var(--font-mono)",
           fontSize: mode === "tag" ? "13px" : "11px",
           lineHeight: mode === "tag" ? 1.15 : undefined,
           fontWeight: mode === "tag" ? 400 : 500,
           letterSpacing: mode === "tag" ? 0 : "0.08em",
-          opacity: mode === "link" ? 0.55 : 1,
-          transition: "padding 0.15s ease, opacity 0.15s ease",
+          // The dot stays solid over links too — only its size ever changes.
+          transition: "padding 0.15s ease",
         }}
       >
         {mode === "view" && (
