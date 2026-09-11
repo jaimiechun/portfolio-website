@@ -1,0 +1,306 @@
+/* About, v2.
+   Traced from Figma frame 112:2 — "MacBook Pro 14" - 8" (1512x982).
+   Every value is the raw Figma coordinate multiplied by --u, which is 1px at a
+   1512px viewport, so the desktop rendering matches the frame exactly and
+   scales proportionally below it.
+
+   Exception: the experience and education sections follow emmiwu.com's
+   typographic rhythm rather than the frame's, at Jaimie's request — see the
+   note above .section. */
+
+.stage {
+  position: relative;
+  width: var(--page-w);
+  height: calc(982 * var(--u));
+  margin: 0 auto;
+  color: #000;
+}
+
+/* ---- type ---------------------------------------------------------------- */
+
+.headline {
+  position: absolute;
+  left: var(--gutter);
+  top: calc(104 * var(--u));
+  width: calc(537 * var(--u));
+  font-family: var(--font-self-modern);
+  font-size: calc(40 * var(--u));
+  line-height: calc(48 * var(--u));
+  font-weight: 400;
+}
+
+.headline em {
+  font-style: italic;
+}
+
+/* The whole left column is one flowing stack pinned at the frame's bio origin.
+   It used to be three separately-positioned blocks, but at emmiwu's 14px body
+   size the bio grows from 238px to 336px and would collide with Experience at
+   y=543. Flowing the column keeps the gaps the frame asks for (80px bio to
+   Experience, 36px between sections) no matter how the copy reflows. */
+.column {
+  position: absolute;
+  left: var(--gutter);
+  top: calc(225 * var(--u));
+  width: calc(523 * var(--u));
+}
+
+.bio {
+  font-family: var(--font-figtree);
+  font-size: calc(14 * var(--u));
+  font-weight: 300;
+  line-height: calc(16.8 * var(--u));
+  letter-spacing: 0.01em;
+}
+
+/* The frame separates paragraphs with an empty line rather than a margin. */
+.bio > * + * {
+  margin-top: calc(16.8 * var(--u));
+}
+
+/* ...except the list, which butts straight up against its lead-in line. */
+.bio > p + ul {
+  margin-top: 0;
+}
+
+.bio ul {
+  list-style: disc;
+  padding-left: calc(18 * var(--u));
+}
+
+/* ---- experience / education ----------------------------------------------
+   These two blocks are anchored at their Figma positions (y=543 and y=679)
+   but their internal rhythm comes from emmiwu.com: a 16px Self Modern label,
+   an 8px gap, then 14px Figtree rows separated by a rule with an equal 6px of
+   air above and below it. The frame itself had 12px above each rule and 6px
+   below, which is the unevenness this replaces. The column is 523px wide to
+   match the bio, since 14px type no longer fits the frame's 346px measure. */
+
+.experience {
+  margin-top: calc(32 * var(--u));
+}
+
+.education {
+  margin-top: calc(36 * var(--u));
+}
+
+.sectionLabel {
+  font-family: var(--font-self-modern);
+  font-size: calc(16 * var(--u));
+  font-weight: 300;
+  line-height: calc(26.4 * var(--u));
+  letter-spacing: 0.01em;
+  margin-bottom: calc(8 * var(--u));
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: calc(16 * var(--u));
+  /* Pinned to the line-height so the underline on a linked row can't stretch
+     the box and push its rule out of the shared rhythm. */
+  height: calc(16.8 * var(--u));
+}
+
+.title {
+  font-family: var(--font-figtree);
+  font-size: calc(14 * var(--u));
+  font-weight: 300;
+  line-height: calc(16.8 * var(--u));
+  letter-spacing: 0.01em;
+}
+
+.year {
+  flex-shrink: 0;
+  font-family: var(--font-plex-mono);
+  font-size: calc(12 * var(--u));
+  font-weight: 300;
+  line-height: calc(16.8 * var(--u));
+}
+
+/* Secondary half of each row — "/ Data Science & UX Intern" etc. */
+.sub {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-position: from-font;
+}
+
+/* The email and LinkedIn mentions sit flush in the paragraph until hovered,
+   then take the accent colour over a 29% wash of it, per the two highlight
+   rectangles in the frame. The negative margin cancels the padding so the
+   wash can overhang the text slightly without nudging the line. */
+.inlineLink {
+  color: inherit;
+  text-decoration: none;
+  padding: calc(1 * var(--u)) calc(2 * var(--u));
+  margin: 0 calc(-2 * var(--u));
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.inlineLink:hover {
+  color: var(--accent);
+  background: var(--accent-wash);
+  text-decoration: underline;
+  text-underline-position: from-font;
+}
+
+.rule {
+  display: block;
+  height: 1px;
+  background: var(--rule);
+  margin: calc(6 * var(--u)) 0;
+}
+
+/* ---- photos -------------------------------------------------------------- */
+
+.photo {
+  position: absolute;
+  overflow: hidden;
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The right-hand pair share one column: both start at 1072 and end at 1494,
+   which is the 18px page margin. The frame had them 1px apart on the left and
+   2px apart on the right; squaring them up matches how the reference builds
+   its photo grid, and costs the coffee shot 3px of width. */
+.daisies {
+  left: calc(1072 * var(--u));
+  top: calc(104 * var(--u));
+  width: calc(422 * var(--u));
+  height: calc(317 * var(--u));
+}
+
+/* The frame crops 71px off the top of this one (height 109.01%, top -9.01%),
+   which is the same as anchoring a cover fit to the bottom edge. */
+/* Shifted right with the rest of the cluster so the 12px gutter to the right
+   column is preserved — the same gutter the reference uses. */
+.headshot {
+  left: calc(633 * var(--u));
+  top: calc(152 * var(--u));
+  width: calc(427 * var(--u));
+  height: calc(788 * var(--u));
+}
+
+.headshot img {
+  object-position: bottom;
+}
+
+/* Cropped from the bottom in the frame (height 104.1%, top 0). */
+.coffee {
+  left: calc(1072 * var(--u));
+  top: calc(432 * var(--u));
+  width: calc(422 * var(--u));
+  height: calc(537 * var(--u));
+}
+
+.coffee img {
+  object-position: top;
+}
+
+/* ---- narrow screens ------------------------------------------------------
+   The absolute frame only holds together while there is room for the two
+   columns. Below that everything returns to normal flow and stacks, with the
+   headshot pulled up under the headline so the page still opens on a face. */
+
+@media (max-width: 900px) {
+  .stage {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding: 88px 20px 72px;
+  }
+
+  .headline,
+  .column,
+  .photo {
+    position: static;
+    left: auto;
+    top: auto;
+    width: auto;
+  }
+
+  /* bio, experience and education ride along inside the column. */
+  .column {
+    order: 3;
+  }
+
+  .headline {
+    order: 1;
+    font-size: 30px;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .headshot {
+    order: 2;
+    height: auto;
+    aspect-ratio: 427 / 788;
+    margin-bottom: 28px;
+  }
+
+  .bio {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .bio > * + * {
+    margin-top: 14px;
+  }
+
+  .bio ul {
+    padding-left: 18px;
+  }
+
+  .experience,
+  .education {
+    margin-top: 36px;
+  }
+
+  .sectionLabel {
+    font-size: 18px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+
+  /* Rows can wrap to two lines at this width, so the pinned height comes off. */
+  .row {
+    height: auto;
+    padding: 2px 0;
+  }
+
+  .title,
+  .year {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .rule {
+    margin: 8px 0;
+  }
+
+  .daisies {
+    order: 6;
+    height: auto;
+    aspect-ratio: 422 / 317;
+    margin-top: 32px;
+  }
+
+  .coffee {
+    order: 7;
+    height: auto;
+    aspect-ratio: 419 / 537;
+    margin-top: 16px;
+  }
+}

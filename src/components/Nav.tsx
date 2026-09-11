@@ -1,38 +1,25 @@
 import Link from "next/link";
+import styles from "./Nav.module.css";
+
+const links = [
+  { label: "WORK", href: "/" },
+  { label: "AND?", href: "/play" },
+  { label: "ABOUT", href: "/about" },
+];
 
 export default function Nav() {
   return (
-    <nav
-      style={{
-        display: "flex",
-        alignItems: "center",
-        padding: "20px 40px 16px",
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        background: "transparent",
-        zIndex: 70,
-        pointerEvents: "none",
-      }}
-    >
-      {/* Name */}
-      <Link
-        href="/"
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "12px",
-          fontWeight: 500,
-          letterSpacing: "0.05em",
-          color: "var(--foreground)",
-          textDecoration: "none",
-          lineHeight: 1,
-          display: "block",
-          pointerEvents: "auto",
-        }}
-      >
-        JAIMIE CHUN
-      </Link>
+    <nav className={styles.nav}>
+      <div className={styles.inner}>
+        <Link href="/" className={styles.wordmark}>
+          JAIMIE CHUN
+        </Link>
+        {links.map(({ label, href }) => (
+          <Link key={label} href={href} className={styles.link}>
+            {label}
+          </Link>
+        ))}
+      </div>
     </nav>
   );
 }

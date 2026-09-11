@@ -1,84 +1,178 @@
-import Sidebar from "@/components/Sidebar";
-import TechStack from "@/components/TechStack";
-
-const geist: React.CSSProperties = {
-  fontFamily: "var(--font-geist-sans), 'Geist Fallback', sans-serif",
-  fontSize: "12px",
-  fontWeight: 400,
-  lineHeight: 1.6,
-};
+import styles from "./about.module.css";
 
 export default function About() {
   return (
-    <div style={{ display: "flex", minHeight: "100vh" }}>
-      <Sidebar />
+    <div className={styles.stage}>
+      <h1 className={styles.headline}>
+        I&rsquo;m a builder and storyteller who loves the art of{" "}
+        <em>creation</em>.
+      </h1>
 
-      {/* Main content */}
-      <div style={{ flex: 1, padding: "48px 32px 100px 44px" }}>
-        <div style={{ display: "flex", gap: "64px", alignItems: "center" }}>
-
-          {/* Photo */}
-          <img
-            src="/images/headshot.jpg"
-            alt="Jaimie Chun"
-            style={{
-              width: "288px",
-              height: "273px",
-              borderRadius: "2px",
-              objectFit: "cover",
-              flexShrink: 0,
-            }}
-          />
-
-          {/* Bio */}
-          <div style={{ maxWidth: "560px", display: "flex", flexDirection: "column", gap: "10px" }}>
-            <h1
-              style={{
-                fontFamily: "var(--font-geist-sans), 'Geist Fallback', sans-serif",
-                fontSize: "20px",
-                fontWeight: 400,
-                color: "var(--foreground)",
-                lineHeight: 1.2,
-              }}
+      <div className={styles.column}>
+        <div className={styles.bio}>
+          <p>Hi there, I&rsquo;m Jaimie.</p>
+          <p>
+            I initially entered college with an itch to become a reporter.
+            However, I quickly fell in love with exploring how technology can
+            transform the ways stories are told and experienced.
+          </p>
+          <p>
+            For me, product management is the perfect culmination of the
+            communication skills of journalism, the technical skills of CS, and
+            the leadership skills of business.
+          </p>
+          <p>
+            I&rsquo;m energized by projects that launch products from 0 &rarr;1
+            and figuring out what people actually want. Currently, I&rsquo;m
+            having the most fun in exploring novel AI interactions.
+          </p>
+          <p>Outside of creating, I&rsquo;m:</p>
+          <ul>
+            <li>
+              developing news &amp; media products for journalism at Medill
+            </li>
+            <li>indulging in good books &amp; movies</li>
+            <li>finding new restaurants and eating well!</li>
+          </ul>
+          <p>
+            Say hello at{" "}
+            <a
+              className={styles.inlineLink}
+              href="mailto:jaimiechun78@gmail.com"
             >
-              Hi, I&apos;m Jaimie!
-            </h1>
+              jaimiechun78@gmail.com
+            </a>{" "}
+            or via{" "}
+            <a
+              className={styles.inlineLink}
+              href="https://www.linkedin.com/in/jaimiekchun"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+            .
+          </p>
+        </div>
 
-            <div>
-              <p style={{ ...geist, color: "var(--muted)" }}>Northwestern University</p>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-                <p style={{ ...geist }}>BS Computer Science, Journalism &amp; Data Science</p>
-                <p style={{ ...geist, color: "var(--muted)" }}>Chicago / LA</p>
-              </div>
-            </div>
+        <section className={styles.experience}>
+          <h2 className={styles.sectionLabel}>Experience</h2>
 
-            <p style={{ ...geist }}>
-              I initially entered college with an itch to become a reporter. However, I quickly fell in love with
-              exploring how design and technology can transform the ways stories are told and experienced.
-              Studying computer science and continuing to pursue my love for storytelling, I discovered a passion for working across
-              everything between product, design and &lt;dev&gt;.
+          <div className={styles.row}>
+            <p className={styles.title}>
+              <a
+                className={styles.link}
+                href="https://www.ipr.northwestern.edu/wise-scales/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WISE Scales
+              </a>
+              <span className={styles.sub}>
+                {" "}
+                / Data Science &amp; UX Intern
+              </span>
             </p>
-            <p style={{ ...geist }}>
-              I&apos;m energized by projects that launch products from 0 →1 and figuring out what people actually want. Outside of work, I&apos;m:
-            </p>
-
-            <ul style={{ ...geist, listStyle: "disc", paddingLeft: "20px", display: "flex", flexDirection: "column", gap: "2px" }}>
-              <li>developing news &amp; media products for journalism at Medill</li>
-              <li>indulging in a good books</li>
-              <li>finding new restaurants, eating well and repeating</li>
-            </ul>
-            <p style={{ ...geist }}>
-              Say hi at jaimiechun2028@u.northwestern.edu, and I hope you enjoy my website!
-            </p>
+            <p className={styles.year}>2026</p>
           </div>
 
-        </div>
+          <span className={styles.rule} aria-hidden />
 
-        {/* What I use — left edge aligned with the bio column, not the photo */}
-        <div style={{ marginTop: "40px", marginLeft: "352px" }}>
-          <TechStack />
-        </div>
+          <div className={styles.row}>
+            <p className={styles.title}>
+              Urban Creator
+              <span className={styles.sub}> / Marketing Intern</span>
+            </p>
+            <p className={styles.year}>2025</p>
+          </div>
+
+          <span className={styles.rule} aria-hidden />
+
+          <div className={styles.row}>
+            <p className={styles.title}>
+              OC District Attorney&rsquo;s Office
+              <span className={styles.sub}> / Public Affairs Intern</span>
+            </p>
+            <p className={styles.year}>2025</p>
+          </div>
+        </section>
+
+        <section className={styles.education}>
+          <h2 className={styles.sectionLabel}>
+            Education &amp; Org Leadership
+          </h2>
+
+          <div className={styles.row}>
+            <p className={styles.title}>
+              Northwestern University
+              <span className={styles.sub}>
+                {" "}
+                / CS &amp; Journalism, Data Science Minor
+              </span>
+            </p>
+            <p className={styles.year}>2028</p>
+          </div>
+
+          <span className={styles.rule} aria-hidden />
+
+          <div className={styles.row}>
+            <p className={styles.title}>
+              Spoon Magazine
+              <span className={styles.sub}> / Head of Design</span>
+            </p>
+            <p className={styles.year}>2026</p>
+          </div>
+
+          <span className={styles.rule} aria-hidden />
+
+          <div className={styles.row}>
+            <p className={styles.title}>
+              ISBE Mark
+              <span className={styles.sub}> / Project Manager</span>
+            </p>
+            <p className={styles.year}>2025</p>
+          </div>
+
+          <span className={styles.rule} aria-hidden />
+
+          <div className={styles.row}>
+            <p className={styles.title}>
+              Books &amp; Breakfast
+              <span className={styles.sub}> / Paid Tutor</span>
+            </p>
+            <p className={styles.year}>2025</p>
+          </div>
+        </section>
       </div>
+
+      <figure className={`${styles.photo} ${styles.daisies}`}>
+        <img
+          src="/images/about/daisies.jpg"
+          alt="Daisies against an open sky"
+        />
+      </figure>
+
+      <figure
+        className={`${styles.photo} ${styles.headshot}`}
+        data-cursor="tag"
+        data-cursor-label="Hi!"
+      >
+        <img
+          src="/images/about/headshot-sky.jpg"
+          alt="Jaimie Chun smiling behind a laptop at sunset"
+        />
+      </figure>
+
+      <figure
+        className={`${styles.photo} ${styles.coffee}`}
+        data-cursor="tag"
+        data-cursor-label="Made with <3 & lots of coffee"
+      >
+        <img
+          src="/images/about/coffee.jpg"
+          alt="Three lattes with heart-shaped foam art"
+        />
+      </figure>
     </div>
   );
 }

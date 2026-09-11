@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
-  const [mode, setMode] = useState<"dot" | "view" | "link" | "drag">("dot");
+  const [mode, setMode] = useState<"dot" | "view" | "link" | "drag" | "tag">("dot");
   const [label, setLabel] = useState("VIEW CASE STUDY");
   const [enabled, setEnabled] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -37,10 +37,14 @@ export default function CustomCursor() {
     const onOver = (e: MouseEvent) => {
       const target = e.target as Element;
       const viewEl = target.closest?.('[data-cursor="view"]') as HTMLElement | null;
+      const tagEl = target.closest?.('[data-cursor="tag"]') as HTMLElement | null;
       const dragEl = target.closest?.('[data-cursor="drag"]') as HTMLElement | null;
       if (viewEl) {
         setLabel(viewEl.dataset.cursorLabel || "VIEW CASE STUDY");
         setMode("view");
+      } else if (tagEl) {
+        setLabel(tagEl.dataset.cursorLabel || "");
+        setMode("tag");
       } else if (dragEl) {
         setLabel(dragEl.dataset.cursorLabel || "SCROLL/DRAG TO MOVE");
         setMode("drag");
@@ -68,6 +72,9 @@ export default function CustomCursor() {
 
   if (!enabled) return null;
 
+  // Every labelled mode renders as a pill; only the bare "dot" stays a circle.
+  const isPill = mode === "view" || mode === "drag" || mode === "tag";
+
   return (
     <div
       ref={cursorRef}
@@ -90,14 +97,20 @@ export default function CustomCursor() {
           background: "#FF3E00",
           color: "#fff",
           borderRadius: "999px",
-          padding: mode === "view" || mode === "drag" ? "9px 16px" : 0,
-          width: mode === "view" || mode === "drag" ? "auto" : "14px",
-          height: mode === "view" || mode === "drag" ? "auto" : "14px",
-          whiteSpace: "nowrap",
-          fontFamily: "var(--font-mono)",
-          fontSize: "11px",
-          fontWeight: 500,
-          letterSpacing: "0.08em",
+          // Tag padding is tuned so "Hi!" lands on the frame's 36x22 pill and
+          // the coffee tag on its 144x33 one.
+          padding: isPill ? (mode === "tag" ? "5px 10px" : "9px 16px") : 0,
+          width: isPill ? "auto" : "14px",
+          height: isPill ? "auto" : "14px",
+          // Photo tags wrap to two lines the way they do in the Figma frame.
+          whiteSpace: mode === "tag" ? "normal" : "nowrap",
+          maxWidth: mode === "tag" ? "144px" : undefined,
+          textAlign: "center",
+          fontFamily: mode === "tag" ? "var(--font-plex-mono)" : "var(--font-mono)",
+          fontSize: mode === "tag" ? "13px" : "11px",
+          lineHeight: mode === "tag" ? 1.15 : undefined,
+          fontWeight: mode === "tag" ? 400 : 500,
+          letterSpacing: mode === "tag" ? 0 : "0.08em",
           opacity: mode === "link" ? 0.55 : 1,
           transition: "padding 0.15s ease, opacity 0.15s ease",
         }}
@@ -121,6 +134,7 @@ export default function CustomCursor() {
             {label}
           </>
         )}
+        {mode === "tag" && label}
         {mode === "drag" && (
           <>
             <svg

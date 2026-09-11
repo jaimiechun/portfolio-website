@@ -1,0 +1,64 @@
+/* v2 header, matched to emmiwu.com rather than the Figma frame:
+   a 56px bar with 12px IBM Plex Mono at weight 500, the wordmark 18px from
+   the left, the links 18px from the right, and 20px between them. The type is
+   vertically centred — on the reference its 19.8px line box sits at y=18.1 in
+   a 56px bar, which is dead centre. */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 70;
+  height: calc(56 * var(--u));
+  background: var(--background);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Inner track matches the stage width so the wordmark and links line up with
+   the page content once the viewport is wider than the 1512px frame. */
+.inner {
+  width: var(--page-w);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: calc(20 * var(--u));
+}
+
+.link {
+  font-family: var(--font-plex-mono);
+  font-size: calc(12 * var(--u));
+  font-weight: 500;
+  line-height: calc(19.8 * var(--u));
+  letter-spacing: 0.01em;
+  color: #000;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Pushes the three nav links to the right edge. */
+.wordmark {
+  composes: link;
+  margin-right: auto;
+}
+
+@media (max-width: 900px) {
+  .nav {
+    height: auto;
+  }
+
+  .inner {
+    width: 100%;
+    padding: 16px 20px;
+    /* The 20px desktop gap is scaled by --u, which collapses it to ~5px at
+       phone widths — pin it so the links stay separated. */
+    gap: 14px;
+  }
+
+  .link {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
