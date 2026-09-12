@@ -117,6 +117,9 @@
   font-size: calc(12 * var(--u));
   font-weight: 300;
   line-height: calc(16.8 * var(--u));
+  /* Matches .sub, so the year and the position name it shares a row with read
+     at the same weight against the organisation's name. */
+  color: rgba(0, 0, 0, 0.5);
 }
 
 /* Secondary half of each row — "/ Data Science & UX Intern" etc. */
