@@ -9,12 +9,12 @@
   padding: 0 var(--gutter);
 }
 
-/* Same treatment as the header links it sits under — IBM Plex Mono at 12/19.8,
-   weight 500, resting at 55%. */
+/* Same font, weight and 55% rest state as the header links it sits under, but
+   set at 15px. Line-height keeps the header's 1.65 ratio. */
 .label {
   font-family: var(--font-plex-mono);
-  font-size: 12px;
-  line-height: 19.8px;
+  font-size: 15px;
+  line-height: 24.75px;
   font-weight: 500;
   letter-spacing: 0.01em;
   color: #000;
