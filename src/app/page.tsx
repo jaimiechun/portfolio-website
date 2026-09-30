@@ -36,8 +36,11 @@ const projects: Project[] = [
     title: "CreditKarma for Gen Z",
     desc: "Financial habits for younger generations",
     gradient: true,
+    // Nothing constrains a drawn thumbnail's box, so it takes the reference
+    // recording's 1358x766 proportions — which also keeps it off WISE Scale's
+    // height, so the two columns stay staggered rather than squaring up.
     w: 729,
-    h: 583,
+    h: 412,
     cursorTag: "CURRENTLY LEADING",
   },
   {
