@@ -26,7 +26,11 @@ type Project = {
   cursorTag?: string;
 };
 
-/* One list in reading order, dealt alternately into the two columns: item 1
+/* Box heights belong to positions rather than to projects: the sequence
+   583 / 502 / 641 / 858 / 641 runs down the page, so inserting a project slides
+   every later card into the next slot's size and the stagger is preserved.
+
+   One list in reading order, dealt alternately into the two columns: item 1
    heads the left column, item 2 the right, item 3 sits under item 1, and so
    on. Inserting a project therefore slides every later card one place along
    rather than pushing a whole column down. */
@@ -46,7 +50,7 @@ const projects: Project[] = [
     desc: "Visualizing and understanding data on water insecurity across the globe",
     src: "/images/work/live-map.jpg",
     w: 729,
-    h: 825,
+    h: 502,
     // No href on purpose — the case study isn't written, so the card is a
     // static image that only reports "CURRENTLY BUILDING" on hover.
     cursorTag: "CURRENTLY BUILDING",
@@ -58,7 +62,7 @@ const projects: Project[] = [
     src: "/images/work/digital-twins.png",
     video: "/videos/digital-twins.mp4",
     w: 729,
-    h: 710,
+    h: 641,
     href: "/work/synthetic-audience-auditing",
   },
   {
@@ -67,7 +71,7 @@ const projects: Project[] = [
     desc: "Building a simple web app to make sure we never miss out of things we want to do with loved ones",
     src: "/images/work/bucket-list.jpg",
     w: 729,
-    h: 907,
+    h: 858,
     href: "/work/listly",
   },
   {
@@ -77,7 +81,7 @@ const projects: Project[] = [
     src: "/images/work/chicago-food.png",
     video: "/videos/chicago-food.mp4",
     w: 729,
-    h: 1214,
+    h: 641,
     href: "https://jaimiechun.github.io/morning-jay-s-story/",
     external: true,
   },
@@ -87,7 +91,7 @@ const projects: Project[] = [
     desc: "Creating editorial illustrations to translate narratives into visual storytelling.",
     src: "/images/work/editorial-design.jpg",
     w: 729,
-    h: 907,
+    h: 583,
     href: "/work/editorial-design",
   },
 ];
