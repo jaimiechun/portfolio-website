@@ -14,6 +14,13 @@ type Project = {
   /** When set, the thumbnail is drawn rather than loaded — a live gradient. */
   gradient?: boolean;
   /**
+   * Artwork whose own edges are a flat colour is fitted whole into the box and
+   * the surround painted that same colour, so the box can be any height
+   * without cropping into the picture. Photographs that bleed to their edges
+   * have no such colour and stay cover-fit.
+   */
+  bg?: string;
+  /**
    * Thumbnail box, taken position-for-position from the matching card on
    * emmiwu.com — not the native size of the artwork. The image is cover-fit
    * into it, so each Figma frame should be redesigned to this ratio.
@@ -61,6 +68,7 @@ const projects: Project[] = [
     desc: "Deeply trained AI personalities helping identify blinds spots before publication",
     src: "/images/work/digital-twins.png",
     video: "/videos/digital-twins.mp4",
+    bg: "#97ad87",
     w: 729,
     h: 641,
     href: "/work/synthetic-audience-auditing",
@@ -70,6 +78,7 @@ const projects: Project[] = [
     title: "Collaborative Bucket List Concept",
     desc: "Building a simple web app to make sure we never miss out of things we want to do with loved ones",
     src: "/images/work/bucket-list.jpg",
+    bg: "#0c9e8b",
     w: 729,
     h: 858,
     href: "/work/listly",
@@ -80,6 +89,7 @@ const projects: Project[] = [
     desc: "Writing, photographing and designing a Chicago story for the web",
     src: "/images/work/chicago-food.png",
     video: "/videos/chicago-food.mp4",
+    bg: "#fbf3e6",
     w: 729,
     h: 641,
     href: "https://jaimiechun.github.io/morning-jay-s-story/",
@@ -90,6 +100,7 @@ const projects: Project[] = [
     title: "Editorial Design",
     desc: "Creating editorial illustrations to translate narratives into visual storytelling.",
     src: "/images/work/editorial-design.jpg",
+    bg: "#7a81eb",
     w: 729,
     h: 583,
     href: "/work/editorial-design",
@@ -98,6 +109,12 @@ const projects: Project[] = [
 
 const left = projects.filter((_, i) => i % 2 === 0);
 const right = projects.filter((_, i) => i % 2 === 1);
+
+/** Contain-and-blend when the artwork has a flat edge colour, cover otherwise. */
+function fit(project: Project): React.CSSProperties {
+  if (!project.bg) return {};
+  return { objectFit: "contain", background: project.bg };
+}
 
 function Card({ project, order }: { project: Project; order: number }) {
   const body = (
@@ -113,7 +130,7 @@ function Card({ project, order }: { project: Project; order: number }) {
           src={project.video}
           poster={project.src}
           label={project.title}
-          style={{ aspectRatio: `${project.w} / ${project.h}` }}
+          style={{ aspectRatio: `${project.w} / ${project.h}`, ...fit(project) }}
         />
       ) : (
         <img
@@ -122,7 +139,7 @@ function Card({ project, order }: { project: Project; order: number }) {
           alt={project.title}
           width={project.w}
           height={project.h}
-          style={{ aspectRatio: `${project.w} / ${project.h}` }}
+          style={{ aspectRatio: `${project.w} / ${project.h}`, ...fit(project) }}
         />
       )}
       <p className={styles.meta}>{project.meta}</p>
