@@ -114,8 +114,12 @@
     gap: 36px;
   }
 
+  /* One column on a phone, so the two stacks dissolve and the cards become
+     direct children of .grid. Their `order` is the index in the reading-order
+     list, which puts them back in that order rather than left stack then right
+     stack. */
   .col {
-    gap: 36px;
+    display: contents;
   }
 
   .meta {

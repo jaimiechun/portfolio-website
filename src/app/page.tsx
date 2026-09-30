@@ -26,8 +26,11 @@ type Project = {
   cursorTag?: string;
 };
 
-// Left and right stacks, in the order the frame lays them out.
-const left: Project[] = [
+/* One list in reading order, dealt alternately into the two columns: item 1
+   heads the left column, item 2 the right, item 3 sits under item 1, and so
+   on. Inserting a project therefore slides every later card one place along
+   rather than pushing a whole column down. */
+const projects: Project[] = [
   {
     meta: "INTUIT - FALL 2026",
     title: "CreditKarma for Gen Z",
@@ -49,27 +52,6 @@ const left: Project[] = [
     cursorTag: "CURRENTLY BUILDING",
   },
   {
-    meta: "APP DEVELOPMENT - SPRING 2026",
-    title: "Collaborative Bucket List Concept",
-    desc: "Building a simple web app to make sure we never miss out of things we want to do with loved ones",
-    src: "/images/work/bucket-list.jpg",
-    w: 729,
-    h: 641,
-    href: "/work/listly",
-  },
-  {
-    meta: "VARIOUS PUBLICATIONS - ONGOING",
-    title: "Editorial Design",
-    desc: "Creating editorial illustrations to translate narratives into visual storytelling.",
-    src: "/images/work/editorial-design.jpg",
-    w: 729,
-    h: 641,
-    href: "/work/editorial-design",
-  },
-];
-
-const right: Project[] = [
-  {
     meta: "KNIGHT LAB - SPRING 2026",
     title: "Digital Twins in Journalism",
     desc: "Deeply trained AI personalities helping identify blinds spots before publication",
@@ -78,6 +60,15 @@ const right: Project[] = [
     w: 729,
     h: 502,
     href: "/work/synthetic-audience-auditing",
+  },
+  {
+    meta: "APP DEVELOPMENT - SPRING 2026",
+    title: "Collaborative Bucket List Concept",
+    desc: "Building a simple web app to make sure we never miss out of things we want to do with loved ones",
+    src: "/images/work/bucket-list.jpg",
+    w: 729,
+    h: 641,
+    href: "/work/listly",
   },
   {
     meta: "STORYTELLING FOR THE WEB - SPRING 2026",
@@ -90,9 +81,21 @@ const right: Project[] = [
     href: "https://jaimiechun.github.io/morning-jay-s-story/",
     external: true,
   },
+  {
+    meta: "VARIOUS PUBLICATIONS - ONGOING",
+    title: "Editorial Design",
+    desc: "Creating editorial illustrations to translate narratives into visual storytelling.",
+    src: "/images/work/editorial-design.jpg",
+    w: 729,
+    h: 641,
+    href: "/work/editorial-design",
+  },
 ];
 
-function Card({ project }: { project: Project }) {
+const left = projects.filter((_, i) => i % 2 === 0);
+const right = projects.filter((_, i) => i % 2 === 1);
+
+function Card({ project, order }: { project: Project; order: number }) {
   const body = (
     <>
       {project.gradient ? (
@@ -130,6 +133,7 @@ function Card({ project }: { project: Project }) {
     return (
       <div
         className={styles.card}
+        style={{ order }}
         data-cursor={project.cursorTag ? "tag" : undefined}
         data-cursor-label={project.cursorTag}
       >
@@ -144,6 +148,7 @@ function Card({ project }: { project: Project }) {
       target={project.external ? "_blank" : undefined}
       rel={project.external ? "noopener noreferrer" : undefined}
       className={styles.card}
+      style={{ order }}
       data-cursor={project.cursorTag ? "tag" : undefined}
       data-cursor-label={project.cursorTag}
     >
@@ -163,12 +168,12 @@ export default function Home() {
       <div className={styles.grid}>
         <div className={styles.col}>
           {left.map((p) => (
-            <Card key={p.title} project={p} />
+            <Card key={p.title} project={p} order={projects.indexOf(p)} />
           ))}
         </div>
         <div className={styles.col}>
           {right.map((p) => (
-            <Card key={p.title} project={p} />
+            <Card key={p.title} project={p} order={projects.indexOf(p)} />
           ))}
         </div>
       </div>
