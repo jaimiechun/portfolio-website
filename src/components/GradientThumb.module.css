@@ -1,0 +1,156 @@
+/* Drifting mesh gradient, traced from the reference recording: a dominant
+   field with a handful of soft blobs sliding across it on long, offset cycles,
+   so the movement never visibly loops or repeats a pose.
+
+   Colours come in as custom properties from the component. */
+
+.wrap {
+  position: relative;
+  overflow: hidden;
+  background: var(--g-base);
+}
+
+/* The blobs are drawn oversized and blurred, then clipped by .wrap. Scaling
+   the layer past the edges keeps the blur from washing out at the borders. */
+.field {
+  position: absolute;
+  inset: -25%;
+  filter: blur(60px);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+/* Each blob gets its own path, duration and phase. Durations are coprime-ish
+   so the composition takes minutes to repeat. */
+/* The base already supplies the green, so the accents are painted first and
+   given real size and weight — each owns an edge, the way the reference gives
+   its lavender and blue their own corners. */
+.b1 {
+  right: -18%;
+  top: -22%;
+  width: 72%;
+  height: 78%;
+  background: var(--g-2);
+  opacity: 0.95;
+  animation: drift1 9s ease-in-out infinite alternate;
+}
+
+.b2 {
+  left: -14%;
+  top: 2%;
+  width: 62%;
+  height: 52%;
+  background: var(--g-3);
+  opacity: 0.8;
+  animation: drift2 11s ease-in-out infinite alternate;
+}
+
+.b3 {
+  left: 2%;
+  bottom: -26%;
+  width: 66%;
+  height: 62%;
+  background: var(--g-4);
+  opacity: 0.75;
+  animation: drift3 13s ease-in-out infinite alternate;
+}
+
+.b4 {
+  left: 16%;
+  top: -10%;
+  width: 34%;
+  height: 34%;
+  background: var(--g-5);
+  opacity: 0.5;
+  animation: drift4 10s ease-in-out infinite alternate;
+}
+
+/* Green comes back over the middle, so the dominant colour holds the centre
+   and the wordmark keeps its contrast. */
+.b5 {
+  left: 22%;
+  top: 20%;
+  width: 62%;
+  height: 66%;
+  background: var(--g-1);
+  animation: drift5 12s ease-in-out infinite alternate;
+}
+
+.b6 {
+  right: -10%;
+  bottom: -18%;
+  width: 52%;
+  height: 56%;
+  background: var(--g-1);
+  animation: drift6 14s ease-in-out infinite alternate;
+}
+
+@keyframes drift1 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(48%, 26%) scale(1.35); }
+}
+
+@keyframes drift2 {
+  from { transform: translate(0, 0) scale(1.1); }
+  to   { transform: translate(-44%, 38%) scale(0.8); }
+}
+
+@keyframes drift3 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(40%, -44%) scale(1.4); }
+}
+
+@keyframes drift4 {
+  from { transform: translate(0, 0) scale(1.15); }
+  to   { transform: translate(-52%, -24%) scale(0.85); }
+}
+
+@keyframes drift5 {
+  from { transform: translate(0, 0) scale(0.9); }
+  to   { transform: translate(34%, 44%) scale(1.45); }
+}
+
+@keyframes drift6 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-46%, 32%) scale(1.3); }
+}
+
+/* ---- wordmark ------------------------------------------------------------ */
+
+/* One line, centred in the box. */
+.mark {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.lockup {
+  color: #fff;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: calc(52 * var(--u));
+  line-height: 1.12;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .field {
+    filter: blur(36px);
+  }
+
+  .lockup {
+    font-size: 8.5vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob {
+    animation: none;
+  }
+}

@@ -1,15 +1,18 @@
 import Link from "next/link";
 import AutoVideo from "@/components/AutoVideo";
+import GradientThumb from "@/components/GradientThumb";
 import styles from "./home.module.css";
 
 type Project = {
   meta: string;
   title: string;
   desc: string;
-  src: string;
+  src?: string;
   /** When set, the thumbnail plays this on loop instead of showing `src`,
    *  which becomes its poster. */
   video?: string;
+  /** When set, the thumbnail is drawn rather than loaded — a live gradient. */
+  gradient?: boolean;
   /**
    * Thumbnail box, taken position-for-position from the matching card on
    * emmiwu.com — not the native size of the artwork. The image is cover-fit
@@ -25,6 +28,15 @@ type Project = {
 
 // Left and right stacks, in the order the frame lays them out.
 const left: Project[] = [
+  {
+    meta: "INTUIT - FALL 2026",
+    title: "CreditKarma for Gen Z",
+    desc: "Financial habits for younger generations",
+    gradient: true,
+    w: 729,
+    h: 583,
+    cursorTag: "CURRENTLY LEADING",
+  },
   {
     meta: "WISE SCALE - SUMMER 2026",
     title: "Live Map for Data Collection",
@@ -83,7 +95,12 @@ const right: Project[] = [
 function Card({ project }: { project: Project }) {
   const body = (
     <>
-      {project.video ? (
+      {project.gradient ? (
+        <GradientThumb
+          className={styles.thumb}
+          style={{ aspectRatio: `${project.w} / ${project.h}` }}
+        />
+      ) : project.video ? (
         <AutoVideo
           className={styles.thumb}
           src={project.video}
