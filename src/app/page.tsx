@@ -21,6 +21,12 @@ type Project = {
    */
   bg?: string;
   /**
+   * Where the contained artwork sits in its box. Artwork that deliberately
+   * bleeds off one of its own edges is anchored to that edge, so the bleed
+   * stays flush with the card instead of floating with a band beyond it.
+   */
+  anchor?: React.CSSProperties["objectPosition"];
+  /**
    * Thumbnail box, taken position-for-position from the matching card on
    * emmiwu.com — not the native size of the artwork. The image is cover-fit
    * into it, so each Figma frame should be redesigned to this ratio.
@@ -79,6 +85,9 @@ const projects: Project[] = [
     desc: "Building a simple web app to make sure we never miss out of things we want to do with loved ones",
     src: "/images/work/bucket-list.jpg",
     bg: "#0c9e8b",
+    // The phones run off the bottom of this export, so pin it there and let
+    // the slack become headroom above them.
+    anchor: "bottom",
     w: 729,
     h: 858,
     href: "/work/listly",
@@ -113,7 +122,11 @@ const right = projects.filter((_, i) => i % 2 === 1);
 /** Contain-and-blend when the artwork has a flat edge colour, cover otherwise. */
 function fit(project: Project): React.CSSProperties {
   if (!project.bg) return {};
-  return { objectFit: "contain", background: project.bg };
+  return {
+    objectFit: "contain",
+    objectPosition: project.anchor ?? "center",
+    background: project.bg,
+  };
 }
 
 function Card({ project, order }: { project: Project; order: number }) {
